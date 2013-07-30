@@ -1,0 +1,7 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:id="@+id/cdialog_text"
+    android:layout_width="wrap_content"
+    android:layout_height="35dp"
+    android:textSize="23sp"
+    android:gravity="center_vertical|center_horizontal"
+    android:text="dialog_test"/>
