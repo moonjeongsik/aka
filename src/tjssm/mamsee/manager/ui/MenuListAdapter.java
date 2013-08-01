@@ -30,6 +30,7 @@ public class MenuListAdapter extends BaseAdapter {
 	int[] mIcon;
 	LayoutInflater inflater;
 	
+	
     public static boolean b_btn_square1=false;
     public static boolean b_btn_square2=false;
     public static boolean b_btn_square3=false;

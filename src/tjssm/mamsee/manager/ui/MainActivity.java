@@ -4,7 +4,9 @@ package tjssm.mamsee.manager.ui;
 import java.util.ArrayList;
 
 import tjssm.mamsee.manager.R;
+import tjssm.mamsee.manager.http.ChildApp;
 import tjssm.mamsee.manager.http.ChildInfo;
+import tjssm.mamsee.manager.http.GetAppList;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.OnNavigationListener;
@@ -15,6 +17,7 @@ import com.actionbarsherlock.view.MenuItem;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -53,6 +56,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	ArrayList<CharSequence> mPageMoveList;
 	String[] title;
 	String[] subtitle;
+	
 	int[] icon;
 	Fragment manage_app = new ManageApp();
 	Fragment manage_web = new ManageWeb();
@@ -67,70 +71,30 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 			
 	Handler h;
 	
+	ProgressDialog prog_dialog;
+	GetAppList mGetAppList;
+	public static ArrayList<ChildApp> arrChildApp;
+	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.drawer_main);
-		
-		
 		getActionBar().setDisplayHomeAsUpEnabled(false);
-		
-		
-		h = new Handler();
-        h.postDelayed(irun, 30);//0.3초
-		
-		// Generate title//1,3이 타이틀, 0, 3 버튼
-		title = new String[] { "Information", getString(R.string.child_app_info), getString(R.string.child_web_info), getString(R.string.child_chat_info), "Management", "square_form", "Setting", getString(R.string.account_management), 
-				getString(R.string.child_management), getString(R.string.setting)};
-		subtitle = new String[] { "Information", "1", "2", "3", "Management", "square_form", "Setting", getString(R.string.account_management), 
-				getString(R.string.child_management), getString(R.string.setting)};
-		icon = new int[] { 0, R.drawable.collections_cloud, R.drawable.collections_cloud, R.drawable.collections_cloud, 0, 0, 0, R.drawable.action_about, R.drawable.action_settings,
-				R.drawable.collections_cloud };
-
-		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-		mDrawerList = (ListView) findViewById(R.id.left_drawer);
-		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
-					GravityCompat.START);
-		mMenuAdapter = new MenuListAdapter(this, title, subtitle, icon);
-		mDrawerList.setAdapter(mMenuAdapter);
-		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-		
-		//getSupportActionBar().setHomeButtonEnabled(true);
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-				R.drawable.ic_drawer, R.string.drawer_open,
-				R.string.drawer_close) {
-
-			public void onDrawerClosed(View view) {
-				super.onDrawerClosed(view);
-				Log.d("TJSSM", "cLOSE DRAWER!");
-				getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-				getSupportActionBar().setDisplayShowTitleEnabled(true);
-			}
-			public void onDrawerOpened(View drawerView) {
-				super.onDrawerOpened(drawerView);
-				Log.d("TJSSM", "oPEN DRAWER!");
-				getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-				getSupportActionBar().setDisplayShowTitleEnabled(false);
-			}
-		};
+		mGetAppList = new GetAppList();
+		initChildInfo();
+		initSlideMenuInfo();
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 		if (savedInstanceState == null) {
 				selectItem(0);
 		}
 		
-		mChildList = new ArrayList<CharSequence>();
-		for(int i=0; i<arrChildInfo.size(); i++) 
-			mChildList.add(arrChildInfo.get(i).m_child_name);
+		prog_dialog = new ProgressDialog(MainActivity.this);
+    	//dialog.setTitle("wait");
+		prog_dialog.setMessage("잠시 기다려주세요...");	
+		prog_dialog.setCancelable(true);	
 		
-		list = new ArrayAdapter<CharSequence>(this, R.layout.sherlock_spinner_dropdown_item, mChildList);
 		
-		//navigation list
-        Context context = getSupportActionBar().getThemedContext();
-        list.setDropDownViewResource(R.layout.sherlock_spinner_dropdown_item);
-        getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        getSupportActionBar().setListNavigationCallbacks(list, this);
-        getSupportActionBar().setTitle(getString(R.string.child_app_info));
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -150,7 +114,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
+	
 	// The click listener for ListView in the navigation drawer
 	private class DrawerItemClickListener implements
 			ListView.OnItemClickListener {
@@ -160,30 +124,36 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 			selectItem(position);
 		}
 	}
-
 	
 	Runnable irun = new Runnable() {
 	        public void run() {
 	        	
-	        	
 	        	if(MenuListAdapter.b_btn_square1 == true)
 	        	{
-	        		getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+		    		prog_dialog.show();
+	        		arrChildApp = mGetAppList.GetChildAppList(cur_child_id);
+		    		for(int i = 0; i < arrChildApp.size(); i++) {
+		    			Log.d("Main_GetAppList", arrChildApp.get(i).m_app_name);
+		    			Log.d("Main_GetAppList", arrChildApp.get(i).m_used_time);
+		    		}
+					getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 		    		getSupportActionBar().setDisplayShowTitleEnabled(true);
 	        		getSupportActionBar().setTitle(getString(R.string.child_app_manage));
-		    		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+	        		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 		    		ft.replace(R.id.content_frame, manage_app);
 		    		ft.commit();
 		    		mDrawerList.setItemChecked(1, true);
 		    		mDrawerLayout.closeDrawer(mDrawerList);
 		    		MenuListAdapter.b_btn_square1 = false;
+		    		prog_dialog.dismiss();
+		    		
 	        	}
 	        	else if(MenuListAdapter.b_btn_square2 == true)
 	        	{
 	        		getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 		    		getSupportActionBar().setDisplayShowTitleEnabled(true);
 	        		getSupportActionBar().setTitle(getString(R.string.child_web_manage));
-		    		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+	        		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 		    		ft.replace(R.id.content_frame, manage_web);
 		    		ft.commit();
 		    		mDrawerList.setItemChecked(1, true);
@@ -195,7 +165,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	        		getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 		    		getSupportActionBar().setDisplayShowTitleEnabled(true);
 	        		getSupportActionBar().setTitle(getString(R.string.child_chat_manage));
-		    		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+	        		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 		    		ft.replace(R.id.content_frame, manage_chat);
 		    		ft.commit();
 		    		mDrawerList.setItemChecked(1, true);
@@ -217,7 +187,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	        	h.postDelayed(irun, 30);//0.3초
 	        }
 	};
-	    
+	
 	public void selectItem(int position) {
 
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -226,17 +196,14 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		getSupportActionBar().setDisplayShowTitleEnabled(true);
 		switch (position) {
 		case 1:
-			//ft.replace(R.id.content_frame, setting_account);
 			ft.replace(R.id.content_frame, child_app_info);
    		    getSupportActionBar().setTitle(getString(R.string.child_app_info));
 			break;
 		case 2:
-			//ft.replace(R.id.content_frame, setting_account);
 			ft.replace(R.id.content_frame, child_web_info);
    		    getSupportActionBar().setTitle(getString(R.string.child_web_info));
 			break;
 		case 3:
-			//ft.replace(R.id.content_frame, setting_account);
 			ft.replace(R.id.content_frame, child_chat_info);
    		    getSupportActionBar().setTitle(getString(R.string.child_chat_info));
 			break;
@@ -278,8 +245,68 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	@Override
 	public boolean onNavigationItemSelected(int itemPosition, long itemId) {
 		// TODO Auto-generated method stub
-		Log.d("TJSSM", "Item id:"+mChildList.get(itemPosition)+", itempos:"+itemPosition);
+		
+		cur_child_id = arrChildInfo.get(itemPosition).m_c_id;
+		cur_child_name = arrChildInfo.get(itemPosition).m_child_name;
+		cur_child_date = arrChildInfo.get(itemPosition).m_last_acc_date;
+ 		cur_child_route = arrChildInfo.get(itemPosition).m_is_routed;
+ 		
+ 		Log.d("TJSSM", "cur id:"+cur_child_id+", cur name:"+cur_child_name + "cur date:"+cur_child_date+", cur route:"+cur_child_route);
 		return false;
+	}
+	
+	private void initChildInfo() {
+		mChildList = new ArrayList<CharSequence>();
+		for(int i=0; i<arrChildInfo.size(); i++) 
+			mChildList.add(arrChildInfo.get(i).m_child_name);
+	}
+	private void initSlideMenuInfo() {
+		h = new Handler();
+        h.postDelayed(irun, 30);//0.3초
+		
+		// Generate title//1,3이 타이틀, 0, 3 버튼 
+		title = new String[] { "Information", getString(R.string.child_app_info), getString(R.string.child_web_info), getString(R.string.child_chat_info), "Management", "square_form", "Setting", getString(R.string.account_management), 
+				getString(R.string.child_management), getString(R.string.setting)};
+		subtitle = new String[] { "Information", "1", "2", "3", "Management", "square_form", "Setting", getString(R.string.account_management), 
+				getString(R.string.child_management), getString(R.string.setting)};
+		icon = new int[] { 0, R.drawable.collections_cloud, R.drawable.collections_cloud, R.drawable.collections_cloud, 0, 0, 0, R.drawable.action_about, R.drawable.action_settings,
+				R.drawable.collections_cloud };
+
+		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+		mDrawerList = (ListView) findViewById(R.id.left_drawer);
+		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
+					GravityCompat.START);
+		mMenuAdapter = new MenuListAdapter(this, title, subtitle, icon);
+		mDrawerList.setAdapter(mMenuAdapter);
+		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+		
+		
+		//getSupportActionBar().setHomeButtonEnabled(true);
+				getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+				mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+						R.drawable.ic_drawer, R.string.drawer_open,
+						R.string.drawer_close) {
+
+					public void onDrawerClosed(View view) {
+						super.onDrawerClosed(view);
+						Log.d("TJSSM", "cLOSE DRAWER!");
+						getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+						getSupportActionBar().setDisplayShowTitleEnabled(true);
+					}
+					public void onDrawerOpened(View drawerView) {
+						super.onDrawerOpened(drawerView);
+						Log.d("TJSSM", "oPEN DRAWER!");
+						getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+						getSupportActionBar().setDisplayShowTitleEnabled(false);
+					}
+				};
+				list = new ArrayAdapter<CharSequence>(this, R.layout.sherlock_spinner_dropdown_item, mChildList);
+				//navigation list
+		        Context context = getSupportActionBar().getThemedContext();
+		        list.setDropDownViewResource(R.layout.sherlock_spinner_dropdown_item);
+		        getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+		        getSupportActionBar().setListNavigationCallbacks(list, this);
+		        getSupportActionBar().setTitle(getString(R.string.child_app_info));
 	}
 	
 	

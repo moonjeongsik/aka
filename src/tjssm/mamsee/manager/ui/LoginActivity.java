@@ -160,29 +160,26 @@ public class LoginActivity extends Activity {
             	result = mCheckAcc.CheckParentAccount(mEmail, mPassword);
             	
             	MainActivity.arrChildInfo = mCheckAcc.GetParentChildList(mEmail);
-            	for(int i=0; i<MainActivity.arrChildInfo.size(); i++) {
-            		Log.d("TJSSM", "PRINT- c_id:"+MainActivity.arrChildInfo.get(i).m_c_id+", name:"+MainActivity.arrChildInfo.get(i).m_child_name+
-            					", date:"+MainActivity.arrChildInfo.get(i).m_last_acc_date+", is_routed:"+MainActivity.arrChildInfo.get(i).m_is_routed);
-            	}
+            	//for(int i=0; i<MainActivity.arrChildInfo.size(); i++) {
+            	//	Log.d("TJSSM", "PRINT- c_id:"+MainActivity.arrChildInfo.get(i).m_c_id+", name:"+MainActivity.arrChildInfo.get(i).m_child_name+
+            	//				", date:"+MainActivity.arrChildInfo.get(i).m_last_acc_date+", is_routed:"+MainActivity.arrChildInfo.get(i).m_is_routed);
+            	//}
 
             	
-            	Log.d("TJSSM", "TRY:"+result);
+            	//Log.d("TJSSM", "TRY:"+result);
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 return false;
             }
             dialog.dismiss();
             
-            if(result.equals("ACCORD")) {
+            if(result != null && result.equals("ACCORD")) {
             	Log.d("TJSSM", "ACCORD:"+result);
             	return true;
             }
             else 
             	Log.d("TJSSM", "DISCORD:"+result);
-            
-            // TODO: register the new account here.
             return false;
-            //            return true;
         }
 
         @Override
@@ -191,7 +188,6 @@ public class LoginActivity extends Activity {
             //showProgress(false);
 
             if (success) {
-            	Log.d(TAG, "Log in OK!");
                 Intent intent;
                 intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);

@@ -2,9 +2,7 @@ package tjssm.mamsee.manager.http;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
@@ -13,7 +11,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Vector;
- 
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -64,59 +62,45 @@ import android.widget.Toast;
 
 
 @SuppressLint("NewApi")
-public class GetParentAccount extends Activity {
+public class GetAppList extends Activity {
 
 	public static final String SERVER_IP = "210.118.64.173"; 
 	
-	public String CheckParentAccount(String p_id, String pass_word) {
+	private String c_id;
+	private String c_page;
+	private String c_date;
+	TH_GetAppList th_getAppList;
+	ArrayList<ChildApp> mChildAppList;
 	
-		String url = "http://210.118.64.173/mam_plogin.php?p_id="+p_id
-				+"&pass_word="+pass_word;
-		HttpClient client = new DefaultHttpClient();
-		HttpPost post = new HttpPost(url);
-		HttpResponse response = null;
-		try {
-			response = client.execute(post);
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		StringBuilder html = new StringBuilder();
-		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-			for(;;) {
-				String line = br.readLine();
-				if( line == null ) break;
-				html.append(line + '\n');
-			}
-			br.close();	
-		
-		}catch(Exception e) {}
-		
-		String json_from_server = html.toString();
-		String result = null;
-		try {
-			JSONArray ja = new JSONArray(json_from_server);
-				JSONObject json_msg = ja.getJSONObject(0);
-				result = json_msg.getString("RESULT");
-				//Log.d("MAMSEE_DB",":"+result);
-		}catch(JSONException e) {
-			Log.d("MAMSEE_DB","Exception e");
-		}
-		return result;
+	public GetAppList() {
 	}
 	
-	
-	public ArrayList<ChildInfo> GetParentChildList(String p_id) {
+	public ArrayList<ChildApp> GetChildAppList(String m_c_id) {
+		this.c_id 	 = m_c_id;
+		this.c_page  = null;
+		this.c_date  = null;
+		mChildAppList = new ArrayList<ChildApp>();
+		th_getAppList = new TH_GetAppList();
+		th_getAppList.start();
+		try{
+			
+			th_getAppList.join();
+		}catch(Exception e){
+			Log.d("GetAppList", "err");
+		}
+		return mChildAppList;
+	}
+    public void SubGetList(String m_c_id) {
+    	
+
 		
-		String url = "http://210.118.64.173/mam_pget_child_list.php?p_id="+p_id;
+		String url = "http://210.118.64.173/mam_get_applist.php"
+				+"?c_id=" + c_id + "&page=" + c_page +"&date="+c_date;
 		HttpClient client = new DefaultHttpClient();
 		HttpPost post = new HttpPost(url);
 		HttpResponse response = null;
 		
-		ArrayList<ChildInfo> mChildInfoList;
-		mChildInfoList = new ArrayList<ChildInfo>();
+		
 		
 		try {
 			response = client.execute(post);
@@ -143,20 +127,50 @@ public class GetParentAccount extends Activity {
 			//Log.d("TJSSM", ja.length()+"=->"+json_from_server);//w_option	
 			for(int i=0; i<(ja.length() - 1); i++) {
 				JSONObject query_result = ja.getJSONObject(i);
-				String c_id = query_result.getString("c_id");
-				String child_name = query_result.getString("child_name");
-				String last_acc_date = query_result.getString("last_acc_date");
-				String is_routed = query_result.getString("is_routed");
-				mChildInfoList.add(new ChildInfo(c_id, child_name, last_acc_date, is_routed));
+				String app_name = query_result.getString("app_name");
+				String used_time = query_result.getString("used_time");
+				mChildAppList.add(new ChildApp(app_name, SecToStr( Integer.parseInt(used_time) )));
 			//	Log.d("TJSSM", "c_id:"+c_id+", child_name:"+child_name+", last_acc_date:"+last_acc_date+", is routed:"+is_routed);
 			}
 		}catch(Exception e) {
 			Log.d("TJSSM","Exception e");
 		}
-		
-		return mChildInfoList;
-		
 	}
-	
+    
+    class TH_GetAppList extends Thread {
+		
+		public void run() {
+			
+			try{
+				SubGetList(c_id);
+			}
+			catch(Exception e){
+				Log.d("GetAppList", "err");
+			}
+		}
+
+	}
+    public String SecToStr(int second)
+	{
+		String str="";
+		int hour;
+		int min;
+		int sec;
+		
+		hour = second / 3600;
+		
+		min = second;
+		min = min / 60;
+		min = min % 60;
+		
+		sec = second % 60;
+		
+		String h = String.format("%02d", hour);
+		String m = String.format("%02d", min);
+		String s = String.format("%02d", sec);
+		str = h + ":" + m + ":" + s;
+		
+		return str; 
+	}
     
 }
