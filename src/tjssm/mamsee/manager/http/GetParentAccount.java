@@ -140,7 +140,6 @@ public class GetParentAccount extends Activity {
 		String json_from_server = html.toString();
 		try {
 			JSONArray ja = new JSONArray(json_from_server);
-			//Log.d("TJSSM", ja.length()+"=->"+json_from_server);//w_option	
 			for(int i=0; i<(ja.length() - 1); i++) {
 				JSONObject query_result = ja.getJSONObject(i);
 				String c_id = query_result.getString("c_id");
@@ -148,7 +147,6 @@ public class GetParentAccount extends Activity {
 				String last_acc_date = query_result.getString("last_acc_date");
 				String is_routed = query_result.getString("is_routed");
 				mChildInfoList.add(new ChildInfo(c_id, child_name, last_acc_date, is_routed));
-			//	Log.d("TJSSM", "c_id:"+c_id+", child_name:"+child_name+", last_acc_date:"+last_acc_date+", is routed:"+is_routed);
 			}
 		}catch(Exception e) {
 			Log.d("TJSSM","Exception e");

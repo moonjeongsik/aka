@@ -45,6 +45,7 @@ import android.graphics.Bitmap.CompressFormat;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.os.NetworkOnMainThreadException;
@@ -129,8 +130,16 @@ public class GetAppList extends Activity {
 				JSONObject query_result = ja.getJSONObject(i);
 				String app_name = query_result.getString("app_name");
 				String used_time = query_result.getString("used_time");
-				mChildAppList.add(new ChildApp(app_name, SecToStr( Integer.parseInt(used_time) )));
-			//	Log.d("TJSSM", "c_id:"+c_id+", child_name:"+child_name+", last_acc_date:"+last_acc_date+", is routed:"+is_routed);
+				String icon_image = query_result.getString("icon_image");
+				byte[] byteArray = icon_image.getBytes();
+				
+				
+				
+				//Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+				mChildAppList.add(new ChildApp(app_name, SecToStr( Integer.parseInt(used_time) ), byteArray));
+				Log.d("TJSSM", "child_name:"+app_name+",  used_time:"+used_time);
+				
+			//	Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
 			}
 		}catch(Exception e) {
 			Log.d("TJSSM","Exception e");

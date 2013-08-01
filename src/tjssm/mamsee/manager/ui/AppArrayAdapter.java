@@ -8,9 +8,8 @@ import tjssm.mamsee.manager.R.id;
 import tjssm.mamsee.manager.R.layout;
 import tjssm.mamsee.manager.http.ChildApp;
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.DrawerLayout;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,14 +73,26 @@ public class AppArrayAdapter extends BaseAdapter {
 			
 			String m_name = mchildApp.get(position).m_app_name;
 			String m_utime = mchildApp.get(position).m_used_time;			
+			byte[] m_img = mchildApp.get(position).m_img;
+			Bitmap bmp = BitmapFactory.decodeByteArray(m_img, 0, m_img.length);
 			
 			TextView txtName = (TextView) itemView.findViewById(R.id.app_list_name);
 			TextView txtOption = (TextView) itemView.findViewById(R.id.app_list_option);
-			//ImageView imgIcon = (ImageView) itemView.findViewById(R.id.app_list_icon);
+			
 			txtName.setText(m_name);
 			txtOption.setText(m_utime);
 			//imgIcon.setImageResource(mIcon[position]);
-		
+			try{
+				if(m_img != null){
+					ImageView imgIcon = (ImageView) itemView.findViewById(R.id.app_list_icon);
+					imgIcon.setImageBitmap(bmp);
+					Log.d("MMM", "AppArrayAdapter bmp OK");
+				}
+				else 
+					Log.d("MMM", "AppArrayAdapter bmp Null");
+			}catch(Exception e){
+				Log.d("MMM", "AppArrayAdapter err");
+			}
 		return itemView;//
 	}
 

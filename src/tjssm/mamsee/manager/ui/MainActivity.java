@@ -73,6 +73,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	
 	ProgressDialog prog_dialog;
 	GetAppList mGetAppList;
+	TH_Loading mTh_Loading;
 	public static ArrayList<ChildApp> arrChildApp;
 	
 	
@@ -88,11 +89,9 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		if (savedInstanceState == null) {
 				selectItem(0);
 		}
-		
 		prog_dialog = new ProgressDialog(MainActivity.this);
-    	//dialog.setTitle("wait");
-		prog_dialog.setMessage("잠시 기다려주세요...");	
-		prog_dialog.setCancelable(true);	
+		prog_dialog.setMessage("잠시 기다려주세요...");
+		prog_dialog.setCancelable(true);
 		
 		
 	}
@@ -130,7 +129,8 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	        	
 	        	if(MenuListAdapter.b_btn_square1 == true)
 	        	{
-		    		prog_dialog.show();
+	        		mTh_Loading = new TH_Loading();
+		    		mTh_Loading.start();
 	        		arrChildApp = mGetAppList.GetChildAppList(cur_child_id);
 		    		for(int i = 0; i < arrChildApp.size(); i++) {
 		    			Log.d("Main_GetAppList", arrChildApp.get(i).m_app_name);
@@ -145,11 +145,13 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		    		mDrawerList.setItemChecked(1, true);
 		    		mDrawerLayout.closeDrawer(mDrawerList);
 		    		MenuListAdapter.b_btn_square1 = false;
-		    		prog_dialog.dismiss();
-		    		
+		    		prog_dialog.dismiss();		    		
 	        	}
 	        	else if(MenuListAdapter.b_btn_square2 == true)
 	        	{
+	        		mTh_Loading = new TH_Loading();
+	        		mTh_Loading.start();
+	        		prog_dialog.show();
 	        		getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 		    		getSupportActionBar().setDisplayShowTitleEnabled(true);
 	        		getSupportActionBar().setTitle(getString(R.string.child_web_manage));
@@ -159,9 +161,12 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		    		mDrawerList.setItemChecked(1, true);
 		    		mDrawerLayout.closeDrawer(mDrawerList);
 		    		MenuListAdapter.b_btn_square2 = false;
+		    		prog_dialog.dismiss();
 	        	}
 	        	else if(MenuListAdapter.b_btn_square3 == true)
 	        	{
+	        		mTh_Loading = new TH_Loading();
+	        		mTh_Loading.start();
 	        		getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 		    		getSupportActionBar().setDisplayShowTitleEnabled(true);
 	        		getSupportActionBar().setTitle(getString(R.string.child_chat_manage));
@@ -171,9 +176,12 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		    		mDrawerList.setItemChecked(1, true);
 		    		mDrawerLayout.closeDrawer(mDrawerList);
 		    		MenuListAdapter.b_btn_square3 = false;
+		    		prog_dialog.dismiss();
 	        	}
 	        	else if(MenuListAdapter.b_btn_square4 == true)
 	        	{
+	        		mTh_Loading = new TH_Loading();
+	        		mTh_Loading.start();
 	        		getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 		    		getSupportActionBar().setDisplayShowTitleEnabled(true);
 	        		getSupportActionBar().setTitle(getString(R.string.child_dic_manage));
@@ -183,6 +191,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		    		mDrawerList.setItemChecked(1, true);
 		    		mDrawerLayout.closeDrawer(mDrawerList);
 		    		MenuListAdapter.b_btn_square4 = false;
+		    		prog_dialog.dismiss();
 	        	}
 	        	h.postDelayed(irun, 30);//0.3초
 	        }
@@ -308,6 +317,19 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		        getSupportActionBar().setListNavigationCallbacks(list, this);
 		        getSupportActionBar().setTitle(getString(R.string.child_app_info));
 	}
-	
+	 
+    class TH_Loading extends Thread {
+		
+		public void run() {
+			
+			try{
+				prog_dialog.show();
+			}
+			catch(Exception e){
+				Log.d("MainActivity", "err");
+			}
+		}
+
+	}
 	
 }
