@@ -10,6 +10,7 @@ import tjssm.mamsee.manager.http.ChildApp;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,8 +74,12 @@ public class AppArrayAdapter extends BaseAdapter {
 			
 			String m_name = mchildApp.get(position).m_app_name;
 			String m_utime = mchildApp.get(position).m_used_time;			
-			byte[] m_img = mchildApp.get(position).m_img;
-			Bitmap bmp = BitmapFactory.decodeByteArray(m_img, 0, m_img.length);
+			byte[] real_img = mchildApp.get(position).m_img;
+			byte[] decoded_img = Base64.decode(real_img, Base64.DEFAULT);
+			
+			
+			Bitmap bmp = BitmapFactory.decodeByteArray(decoded_img, 0, decoded_img.length);
+			
 			
 			TextView txtName = (TextView) itemView.findViewById(R.id.app_list_name);
 			TextView txtOption = (TextView) itemView.findViewById(R.id.app_list_option);
@@ -83,10 +88,10 @@ public class AppArrayAdapter extends BaseAdapter {
 			txtOption.setText(m_utime);
 			//imgIcon.setImageResource(mIcon[position]);
 			try{
-				if(m_img != null){
+				if(decoded_img != null){
 					ImageView imgIcon = (ImageView) itemView.findViewById(R.id.app_list_icon);
 					imgIcon.setImageBitmap(bmp);
-					Log.d("MMM", "AppArrayAdapter bmp OK");
+					Log.d("MMM", "AppArrayAdapter bmp OK : "+ decoded_img.length);
 				}
 				else 
 					Log.d("MMM", "AppArrayAdapter bmp Null");
