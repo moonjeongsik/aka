@@ -1,7 +1,41 @@
-<TextView xmlns:android="http://schemas.android.com/apk/res/android" 
-    android:id="@+id/cdialog_text"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="35dp"
-    android:textSize="23sp"
-    android:gravity="center_vertical|center_horizontal"
-    android:text="dialog_test"/>
+    android:layout_height="wrap_content"
+    android:background="#3E80B4"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/login_connect_dlg"
+        android:layout_width="280dp"
+        android:layout_height="35dp"
+        android:layout_gravity="left"
+        android:text="Error"
+        android:textColor="@android:color/white"
+        android:textSize="25dp"
+        android:textStyle="bold" >
+    </TextView>
+
+    
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#3E80B4"
+        android:orientation="vertical" >
+
+	   <TextView
+	        android:id="@+id/cdialog_text"
+	        android:layout_width="280dp"
+	        android:layout_height="50dp"
+	        android:layout_gravity="center"
+	        android:gravity="center"
+	        android:text="...."
+	        android:background="@android:color/white"
+	        android:textColor="#5DBCD2"
+	        android:textSize="18dp"
+	        android:textStyle="bold" >
+	    </TextView>
+    </LinearLayout>
+
+</LinearLayout>

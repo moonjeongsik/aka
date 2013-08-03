@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="280dp"
+    android:layout_height="wrap_content"
+    android:background="#3E80B4"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/title_applist"
+        android:layout_width="fill_parent"
+        android:layout_height="35dp"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_margin="3dp"
+        android:text="AppName"
+        android:textColor="@android:color/white"
+        android:textSize="20dp"
+        android:textStyle="bold" >
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@android:color/white"
+        android:orientation="horizontal" >
+	    <RadioGroup
+	        android:id="@+id/rgroup_applist"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:checkedButton="@+id/r_app_pass"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+	        android:orientation="horizontal" >
+			<RadioButton
+	            android:id="@id/r_app_pass"
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:textSize="18sp"
+				android:textColor="#5DBCD2"
+				android:text="허용" />
+	        <RadioButton
+	            android:id="@+id/r_app_block"
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:textSize="18sp"
+				android:textColor="#5DBCD2"
+				android:text="차단" />
+	
+	        <RadioButton
+	            android:id="@+id/r_app_time"
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:textSize="18sp"
+	            android:textColor="#5DBCD2"
+	            android:text="제한" />
+	    </RadioGroup>
+    </LinearLayout>
+    
+    <LinearLayout 
+	    android:id="@+id/timelimit_option"
+	 	android:layout_width="fill_parent"
+	 	android:layout_height="wrap_content"
+	 	android:orientation="horizontal">
+	 </LinearLayout>
+    
+       
+	<LinearLayout 
+	    android:id="@+id/date_select_table"
+	 	android:layout_width="fill_parent"
+	 	android:layout_height="wrap_content"
+	 	android:orientation="vertical">
+	 </LinearLayout>
+	  
+
+    
+    <LinearLayout 
+        android:layout_width="fill_parent" 
+        android:layout_height="50dp" 
+        android:background="#3E80B4" 
+        android:orientation="horizontal" > 
+ 
+        <Button 
+            android:id="@+id/btn_yes" 
+            android:layout_width="0dp" 
+            android:layout_height="fill_parent" 
+            android:background="#3E80B4" 
+            android:clickable="true" 
+            android:textSize="20sp" 
+            android:text="등록" 
+            android:layout_weight="7" 
+            android:textColor="@android:color/white" 
+            android:textStyle="bold" /> 
+
+        <TextView 
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:background="@android:color/white"
+            android:layout_weight="1"/>
+        
+        
+        
+        <Button
+            android:id="@+id/btn_no"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:background="#3E80B4"
+            android:clickable="true"
+            android:textSize="20sp"
+            android:text="취소"
+            android:layout_weight="7"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -181,6 +181,14 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int customNavigationLayout=0x7f010050;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int day=0x7f010065;
         /**  Options affecting how the action bar is displayed. 
          <p>Must be one or more (separated by '|') of the following constant values.</p>
 <table>
@@ -224,6 +232,14 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int dropdownListPreferredItemHeight=0x7f01003e;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int enableTime=0x7f010062;
         /**  The drawable to show in the button for expanding the activities overflow popup.
              <strong>Note:</strong> Clients would like to set this drawable
              as a clue about the action the chosen activity will perform. For
@@ -265,6 +281,14 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int horizontalDivider=0x7f010057;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int hour=0x7f010066;
         /**  Specifies the drawable used for the application icon. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
@@ -369,6 +393,22 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int logo=0x7f01004e;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int minute=0x7f010067;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int month=0x7f010064;
         /**  The type of navigation to use. 
          <p>Must be one of the following constant values.</p>
 <table>
@@ -660,6 +700,14 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int windowSplitActionBar=0x7f010044;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int year=0x7f010063;
     }
     public static final class bool {
         public static final int abs__action_bar_embed_tabs=0x7f050000;
@@ -963,41 +1011,56 @@ containing a value of this type.
         public static final int abs__textButton=0x7f040013;
         public static final int abs__title=0x7f04001b;
         public static final int abs__up=0x7f04000b;
-        public static final int acc_btn1=0x7f04003d;
-        public static final int acc_tv1=0x7f04003c;
-        public static final int action_forgot_password=0x7f04004a;
-        public static final int action_settings=0x7f040049;
-        public static final int appListView=0x7f040048;
-        public static final int app_list_icon=0x7f040038;
-        public static final int app_list_name=0x7f040039;
-        public static final int app_list_option=0x7f04003a;
-        public static final int cdialog_text=0x7f04003b;
-        public static final int content_frame=0x7f040045;
-        public static final int content_tv1=0x7f040047;
+        public static final int acc_btn1=0x7f04004a;
+        public static final int acc_tv1=0x7f040049;
+        public static final int action_forgot_password=0x7f040059;
+        public static final int action_settings=0x7f040058;
+        public static final int appListView=0x7f040055;
+        public static final int app_list_icon=0x7f040041;
+        public static final int app_list_name=0x7f040042;
+        public static final int app_list_option=0x7f040043;
+        public static final int applist_rdg=0x7f040057;
+        public static final int btn_cancel=0x7f040048;
+        public static final int btn_no=0x7f040040;
+        public static final int btn_ok=0x7f040047;
+        public static final int btn_yes=0x7f04003f;
+        public static final int cdialog_text=0x7f040045;
+        public static final int content_frame=0x7f040052;
+        public static final int content_tv1=0x7f040054;
+        public static final int date_select_table=0x7f04003e;
         public static final int disableHome=0x7f040009;
-        public static final int drawer_layout=0x7f040044;
+        public static final int drawer_layout=0x7f040051;
         public static final int edit_query=0x7f040026;
         public static final int email=0x7f040034;
         public static final int homeAsUp=0x7f040006;
-        public static final int icon=0x7f04003e;
-        public static final int left_drawer=0x7f040046;
+        public static final int icon=0x7f04004b;
+        public static final int left_drawer=0x7f040053;
         public static final int listMode=0x7f040002;
         public static final int login=0x7f040036;
-        public static final int menu_settings=0x7f04004b;
+        public static final int login_connect_dlg=0x7f040044;
+        public static final int menu_settings=0x7f04005a;
         public static final int normal=0x7f040001;
         public static final int password=0x7f040035;
         public static final int progcircle=0x7f040033;
+        public static final int r_app_block=0x7f04003b;
+        public static final int r_app_pass=0x7f04003a;
+        public static final int r_app_time=0x7f04003c;
+        public static final int rgroup_applist=0x7f040039;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;
         public static final int showTitle=0x7f040007;
         public static final int sign_in_button=0x7f040037;
-        public static final int slide_b1=0x7f040040;
-        public static final int slide_b2=0x7f040041;
-        public static final int slide_b3=0x7f040042;
-        public static final int slide_b4=0x7f040043;
+        public static final int slide_b1=0x7f04004d;
+        public static final int slide_b2=0x7f04004e;
+        public static final int slide_b3=0x7f04004f;
+        public static final int slide_b4=0x7f040050;
         public static final int tabMode=0x7f040003;
         public static final int textView=0x7f040032;
-        public static final int title=0x7f04003f;
+        public static final int time_picker=0x7f040046;
+        public static final int timelimit_option=0x7f04003d;
+        public static final int title=0x7f04004c;
+        public static final int title_applist=0x7f040038;
+        public static final int txt_dia=0x7f040056;
         public static final int useLogo=0x7f040004;
         public static final int wrap_content=0x7f040000;
     }
@@ -1028,26 +1091,29 @@ containing a value of this type.
         public static final int abs__simple_dropdown_hint=0x7f030014;
         public static final int activity_intro=0x7f030015;
         public static final int activity_login=0x7f030016;
-        public static final int child_app_info=0x7f030017;
-        public static final int child_app_list_item=0x7f030018;
-        public static final int child_chat_info=0x7f030019;
-        public static final int child_web_info=0x7f03001a;
-        public static final int custom_dialog_activity=0x7f03001b;
-        public static final int drawer_list_account=0x7f03001c;
-        public static final int drawer_list_item=0x7f03001d;
-        public static final int drawer_list_item_square=0x7f03001e;
-        public static final int drawer_main=0x7f03001f;
-        public static final int drawer_sub_title=0x7f030020;
-        public static final int manage_app=0x7f030021;
-        public static final int manage_app_list=0x7f030022;
-        public static final int manage_chat=0x7f030023;
-        public static final int manage_dic=0x7f030024;
-        public static final int manage_web=0x7f030025;
-        public static final int setting_account=0x7f030026;
-        public static final int setting_child=0x7f030027;
-        public static final int setting_notifi=0x7f030028;
-        public static final int sherlock_spinner_dropdown_item=0x7f030029;
-        public static final int sherlock_spinner_item=0x7f03002a;
+        public static final int applist_dialog=0x7f030017;
+        public static final int child_app_info=0x7f030018;
+        public static final int child_app_list_item=0x7f030019;
+        public static final int child_chat_info=0x7f03001a;
+        public static final int child_web_info=0x7f03001b;
+        public static final int custom_dialog_activity=0x7f03001c;
+        public static final int datetime_picker=0x7f03001d;
+        public static final int drawer_list_account=0x7f03001e;
+        public static final int drawer_list_item=0x7f03001f;
+        public static final int drawer_list_item_square=0x7f030020;
+        public static final int drawer_main=0x7f030021;
+        public static final int drawer_sub_title=0x7f030022;
+        public static final int manage_app=0x7f030023;
+        public static final int manage_app_list=0x7f030024;
+        public static final int manage_chat=0x7f030025;
+        public static final int manage_dic=0x7f030026;
+        public static final int manage_web=0x7f030027;
+        public static final int origin_applist_dialog=0x7f030028;
+        public static final int setting_account=0x7f030029;
+        public static final int setting_child=0x7f03002a;
+        public static final int setting_notifi=0x7f03002b;
+        public static final int sherlock_spinner_dropdown_item=0x7f03002c;
+        public static final int sherlock_spinner_item=0x7f03002d;
     }
     public static final class menu {
         public static final int intro=0x7f0c0000;
@@ -1241,6 +1307,114 @@ containing a value of this type.
         public static final int Widget_Sherlock_TextView_SpinnerItem=0x7f0a0032;
     }
     public static final class styleable {
+        /** Attributes that can be used with a DataTimePicker.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #DataTimePicker_day tjssm.mamsee.manager:day}</code></td><td></td></tr>
+           <tr><td><code>{@link #DataTimePicker_enableTime tjssm.mamsee.manager:enableTime}</code></td><td></td></tr>
+           <tr><td><code>{@link #DataTimePicker_hour tjssm.mamsee.manager:hour}</code></td><td></td></tr>
+           <tr><td><code>{@link #DataTimePicker_minute tjssm.mamsee.manager:minute}</code></td><td></td></tr>
+           <tr><td><code>{@link #DataTimePicker_month tjssm.mamsee.manager:month}</code></td><td></td></tr>
+           <tr><td><code>{@link #DataTimePicker_year tjssm.mamsee.manager:year}</code></td><td></td></tr>
+           </table>
+           @see #DataTimePicker_day
+           @see #DataTimePicker_enableTime
+           @see #DataTimePicker_hour
+           @see #DataTimePicker_minute
+           @see #DataTimePicker_month
+           @see #DataTimePicker_year
+         */
+        public static final int[] DataTimePicker = {
+            0x7f010062, 0x7f010063, 0x7f010064, 0x7f010065,
+            0x7f010066, 0x7f010067
+        };
+        /**
+          <p>This symbol is the offset where the {@link tjssm.mamsee.manager.R.attr#day}
+          attribute's value can be found in the {@link #DataTimePicker} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:day
+        */
+        public static final int DataTimePicker_day = 3;
+        /**
+          <p>This symbol is the offset where the {@link tjssm.mamsee.manager.R.attr#enableTime}
+          attribute's value can be found in the {@link #DataTimePicker} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:enableTime
+        */
+        public static final int DataTimePicker_enableTime = 0;
+        /**
+          <p>This symbol is the offset where the {@link tjssm.mamsee.manager.R.attr#hour}
+          attribute's value can be found in the {@link #DataTimePicker} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:hour
+        */
+        public static final int DataTimePicker_hour = 4;
+        /**
+          <p>This symbol is the offset where the {@link tjssm.mamsee.manager.R.attr#minute}
+          attribute's value can be found in the {@link #DataTimePicker} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:minute
+        */
+        public static final int DataTimePicker_minute = 5;
+        /**
+          <p>This symbol is the offset where the {@link tjssm.mamsee.manager.R.attr#month}
+          attribute's value can be found in the {@link #DataTimePicker} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:month
+        */
+        public static final int DataTimePicker_month = 2;
+        /**
+          <p>This symbol is the offset where the {@link tjssm.mamsee.manager.R.attr#year}
+          attribute's value can be found in the {@link #DataTimePicker} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:year
+        */
+        public static final int DataTimePicker_year = 1;
         /**  Attributes used to style the Action Bar. 
            <p>Includes the following attributes:</p>
            <table>

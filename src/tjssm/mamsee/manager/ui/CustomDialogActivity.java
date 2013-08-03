@@ -22,5 +22,4 @@ public class CustomDialogActivity extends Activity {
         TextView tv1 = (TextView)findViewById(R.id.cdialog_text);
         tv1.setText(msg);
     }
-	
 }

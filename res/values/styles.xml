@@ -24,7 +24,6 @@
     <style name="AppTheme" parent="android:Theme.NoTitleBar" />
 	<style name="MenuTheme" parent="android:Theme.NoTitleBar" />
 	<style name="Theme.CustomDialog" parent="android:style/Theme.Dialog">
-		<item name="android:windowBackground">@drawable/filled_box</item>	    
 	</style>
 	
 </resources>

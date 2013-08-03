@@ -1,7 +1,10 @@
 package tjssm.mamsee.manager.ui;
 
 
+import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import tjssm.mamsee.manager.R;
 import tjssm.mamsee.manager.http.ChildApp;
@@ -42,7 +45,7 @@ import android.support.v4.view.GravityCompat;
 public class MainActivity extends SherlockFragmentActivity implements OnNavigationListener {
 
 	// Declare Variable
-	private String cur_child_id;
+	public static String cur_child_id;
 	private String cur_child_name;
 	private String cur_child_date;
 	private String cur_child_route;
@@ -93,7 +96,6 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		prog_dialog.setMessage("잠시 기다려주세요...");
 		prog_dialog.setCancelable(true);
 		
-		
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -124,14 +126,25 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		}
 	}
 	
+	static class AppTimeCompare implements Comparator<ChildApp> {
+		private final Collator collator = Collator.getInstance();
+		@Override
+		public int compare(ChildApp lhs, ChildApp rhs) {
+			Log.d("MMM", ""+lhs.m_long_time+",    "+rhs.m_long_time);
+			return collator.compare(lhs.m_used_time, rhs.m_used_time);
+		}
+	}
+	
+	
 	Runnable irun = new Runnable() {
 	        public void run() {
 	        	
 	        	if(MenuListAdapter.b_btn_square1 == true)
 	        	{
-	        		mTh_Loading = new TH_Loading();
-		    		mTh_Loading.start();
 	        		arrChildApp = mGetAppList.GetChildAppList(cur_child_id);
+	        		//시간 순서대로 정렬!
+	        		Collections.sort(arrChildApp, new AppTimeCompare());;//arrChildApp.
+	        		Collections.reverse(arrChildApp);
 		    		for(int i = 0; i < arrChildApp.size(); i++) {
 		    			Log.d("Main_GetAppList", arrChildApp.get(i).m_app_name);
 		    			Log.d("Main_GetAppList", arrChildApp.get(i).m_used_time);
@@ -145,13 +158,9 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		    		mDrawerList.setItemChecked(1, true);
 		    		mDrawerLayout.closeDrawer(mDrawerList);
 		    		MenuListAdapter.b_btn_square1 = false;
-		    		prog_dialog.dismiss();		    		
 	        	}
 	        	else if(MenuListAdapter.b_btn_square2 == true)
 	        	{
-	        		mTh_Loading = new TH_Loading();
-	        		mTh_Loading.start();
-	        		prog_dialog.show();
 	        		getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 		    		getSupportActionBar().setDisplayShowTitleEnabled(true);
 	        		getSupportActionBar().setTitle(getString(R.string.child_web_manage));
@@ -161,12 +170,9 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		    		mDrawerList.setItemChecked(1, true);
 		    		mDrawerLayout.closeDrawer(mDrawerList);
 		    		MenuListAdapter.b_btn_square2 = false;
-		    		prog_dialog.dismiss();
 	        	}
 	        	else if(MenuListAdapter.b_btn_square3 == true)
 	        	{
-	        		mTh_Loading = new TH_Loading();
-	        		mTh_Loading.start();
 	        		getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 		    		getSupportActionBar().setDisplayShowTitleEnabled(true);
 	        		getSupportActionBar().setTitle(getString(R.string.child_chat_manage));
@@ -176,12 +182,9 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		    		mDrawerList.setItemChecked(1, true);
 		    		mDrawerLayout.closeDrawer(mDrawerList);
 		    		MenuListAdapter.b_btn_square3 = false;
-		    		prog_dialog.dismiss();
 	        	}
 	        	else if(MenuListAdapter.b_btn_square4 == true)
 	        	{
-	        		mTh_Loading = new TH_Loading();
-	        		mTh_Loading.start();
 	        		getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 		    		getSupportActionBar().setDisplayShowTitleEnabled(true);
 	        		getSupportActionBar().setTitle(getString(R.string.child_dic_manage));
@@ -191,7 +194,6 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		    		mDrawerList.setItemChecked(1, true);
 		    		mDrawerLayout.closeDrawer(mDrawerList);
 		    		MenuListAdapter.b_btn_square4 = false;
-		    		prog_dialog.dismiss();
 	        	}
 	        	h.postDelayed(irun, 30);//0.3초
 	        }
@@ -250,7 +252,6 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 
 
 
-
 	@Override
 	public boolean onNavigationItemSelected(int itemPosition, long itemId) {
 		// TODO Auto-generated method stub
@@ -290,32 +291,31 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 		
 		
-		//getSupportActionBar().setHomeButtonEnabled(true);
-				getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-				mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-						R.drawable.ic_drawer, R.string.drawer_open,
-						R.string.drawer_close) {
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+				R.drawable.ic_drawer, R.string.drawer_open,
+				R.string.drawer_close) {
 
-					public void onDrawerClosed(View view) {
-						super.onDrawerClosed(view);
-						Log.d("TJSSM", "cLOSE DRAWER!");
-						getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-						getSupportActionBar().setDisplayShowTitleEnabled(true);
-					}
-					public void onDrawerOpened(View drawerView) {
-						super.onDrawerOpened(drawerView);
-						Log.d("TJSSM", "oPEN DRAWER!");
-						getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-						getSupportActionBar().setDisplayShowTitleEnabled(false);
-					}
-				};
-				list = new ArrayAdapter<CharSequence>(this, R.layout.sherlock_spinner_dropdown_item, mChildList);
-				//navigation list
-		        Context context = getSupportActionBar().getThemedContext();
-		        list.setDropDownViewResource(R.layout.sherlock_spinner_dropdown_item);
-		        getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-		        getSupportActionBar().setListNavigationCallbacks(list, this);
-		        getSupportActionBar().setTitle(getString(R.string.child_app_info));
+			public void onDrawerClosed(View view) {
+				super.onDrawerClosed(view);
+				Log.d("TJSSM", "cLOSE DRAWER!");
+				getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+				getSupportActionBar().setDisplayShowTitleEnabled(true);
+			}
+			public void onDrawerOpened(View drawerView) {
+				super.onDrawerOpened(drawerView);
+				Log.d("TJSSM", "oPEN DRAWER!");
+				getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+				getSupportActionBar().setDisplayShowTitleEnabled(false);
+			}
+		};
+		list = new ArrayAdapter<CharSequence>(this, R.layout.sherlock_spinner_dropdown_item, mChildList);
+		//navigation list
+        Context context = getSupportActionBar().getThemedContext();
+        list.setDropDownViewResource(R.layout.sherlock_spinner_dropdown_item);
+        getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        getSupportActionBar().setListNavigationCallbacks(list, this);
+        getSupportActionBar().setTitle(getString(R.string.child_app_info));
 	}
 	 
     class TH_Loading extends Thread {

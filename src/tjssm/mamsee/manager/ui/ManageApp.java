@@ -2,6 +2,7 @@ package tjssm.mamsee.manager.ui;
 
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import tjssm.mamsee.manager.R;
@@ -9,6 +10,7 @@ import tjssm.mamsee.manager.R.layout;
 
 import com.actionbarsherlock.app.SherlockFragment;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
@@ -53,9 +55,6 @@ public class ManageApp extends SherlockFragment {
 	private void displayListView() {
 		 
 		  AppArrayAdapter mArrayAdapter;
-		  String [] mName = {"first", "second", "third"};
-		  String [] mTime = {"sub1", "sub2", "sub3"};
-		  
 		  
 		  int [] icon = new int[] {R.drawable.collections_cloud, R.drawable.collections_cloud, R.drawable.collections_cloud};
 		  //mArrayAdapter = new AppArrayAdapter(getSherlockActivity(), mName, mTime, icon);
@@ -67,9 +66,13 @@ public class ManageApp extends SherlockFragment {
 		  listView.setOnItemClickListener(new OnItemClickListener() {
 			   public void onItemClick(AdapterView<?> parent, View view,
 			     int position, long id) {
+				   String app_name 		= MainActivity.arrChildApp.get(position).m_app_name;
+				   String package_name	= MainActivity.arrChildApp.get(position).m_package_name;
+				   String c_id			= MainActivity.cur_child_id;
 				   
 				   
-				   
+				   AppListDialog aldialog = new AppListDialog(getSherlockActivity(), app_name, package_name, c_id);
+				   aldialog.show(); 
 			   }
 		  });
 	}

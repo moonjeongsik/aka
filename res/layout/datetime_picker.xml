@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ 	 android:layout_width="wrap_content" 
+ 	 android:layout_height="wrap_content"
+ 	 android:orientation="vertical" 
+ 	 android:gravity="center">
+ 	
+ <TimePicker 
+     android:id="@+id/time_picker"
+  	 android:layout_width="wrap_content" 
+  	 android:layout_height="wrap_content"/>
+ 
+ <LinearLayout 
+        android:layout_width="fill_parent" 
+        android:layout_height="wrap_content" 
+        android:orientation="horizontal" > 
+ 
+        <Button 
+            android:id="@+id/btn_ok" 
+            android:layout_width="0dp" 
+            android:layout_height="fill_parent" 
+            android:clickable="true" 
+            android:text="확인" 
+            android:layout_weight="1"/> 
+        
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:clickable="true"
+            android:text="취소"
+            android:layout_weight="1"/>
+    </LinearLayout>
+ 
+</LinearLayout>
+
+
+
+
