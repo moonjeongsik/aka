@@ -16,11 +16,11 @@
         android:orientation="horizontal" > 
  
         <Button 
-            android:id="@+id/btn_ok" 
-            android:layout_width="0dp" 
-            android:layout_height="fill_parent" 
-            android:clickable="true" 
-            android:text="확인" 
+            android:id="@+id/btn_ok"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:clickable="true"
+            android:text="확인"
             android:layout_weight="1"/> 
         
         <Button

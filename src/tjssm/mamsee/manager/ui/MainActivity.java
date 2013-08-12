@@ -10,6 +10,18 @@ import tjssm.mamsee.manager.R;
 import tjssm.mamsee.manager.http.ChildApp;
 import tjssm.mamsee.manager.http.ChildInfo;
 import tjssm.mamsee.manager.http.GetAppList;
+import tjssm.mamsee.manager.http.GetChildList;
+import tjssm.mamsee.manager.localdb.AppManageDBHelper;
+import tjssm.mamsee.manager.ui.info.ChildAppInfo;
+import tjssm.mamsee.manager.ui.info.ChildChatInfo;
+import tjssm.mamsee.manager.ui.info.ChildWebInfo;
+import tjssm.mamsee.manager.ui.manage.ManageApp;
+import tjssm.mamsee.manager.ui.manage.ManageChat;
+import tjssm.mamsee.manager.ui.manage.ManageDic;
+import tjssm.mamsee.manager.ui.manage.ManageWeb;
+import tjssm.mamsee.manager.ui.setting.SettingAccount;
+import tjssm.mamsee.manager.ui.setting.SettingChild;
+import tjssm.mamsee.manager.ui.setting.SettingNotification;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.OnNavigationListener;
@@ -44,18 +56,23 @@ import android.support.v4.view.GravityCompat;
 @SuppressLint("NewApi")
 public class MainActivity extends SherlockFragmentActivity implements OnNavigationListener {
 
+	
+	
 	// Declare Variable
 	public static String cur_child_id;
+	public static String cur_p_id;
 	private String cur_child_name;
 	private String cur_child_date;
 	private String cur_child_route;
+	
+	
 	public static ArrayList<ChildInfo> arrChildInfo;
 	DrawerLayout mDrawerLayout;
 	ListView mDrawerList;
 	ActionBarDrawerToggle mDrawerToggle;
 	MenuListAdapter mMenuAdapter;
-	ArrayAdapter<CharSequence> list;
-	ArrayList<CharSequence> mChildList;
+	static ArrayAdapter<CharSequence> list;
+	static ArrayList<CharSequence> mChildList;
 	ArrayList<CharSequence> mPageMoveList;
 	String[] title;
 	String[] subtitle;
@@ -96,6 +113,8 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		prog_dialog.setMessage("잠시 기다려주세요...");
 		prog_dialog.setCancelable(true);
 		
+        
+		
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -134,7 +153,6 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 			return collator.compare(lhs.m_used_time, rhs.m_used_time);
 		}
 	}
-	
 	
 	Runnable irun = new Runnable() {
 	        public void run() {
@@ -242,7 +260,6 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		// Sync the toggle state after onRestoreInstanceState has occurred.
 		mDrawerToggle.syncState();
 	}
-
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
@@ -251,10 +268,10 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	}
 
 
-
 	@Override
 	public boolean onNavigationItemSelected(int itemPosition, long itemId) {
 		// TODO Auto-generated method stub
+		
 		
 		cur_child_id = arrChildInfo.get(itemPosition).m_c_id;
 		cur_child_name = arrChildInfo.get(itemPosition).m_child_name;
@@ -265,10 +282,17 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		return false;
 	}
 	
-	private void initChildInfo() {
+	public void initChildInfo() {
 		mChildList = new ArrayList<CharSequence>();
 		for(int i=0; i<arrChildInfo.size(); i++) 
 			mChildList.add(arrChildInfo.get(i).m_child_name);
+		list = new ArrayAdapter<CharSequence>(this, R.layout.sherlock_spinner_dropdown_item, mChildList);
+		//navigation list
+        Context context = getSupportActionBar().getThemedContext();
+        list.setDropDownViewResource(R.layout.sherlock_spinner_dropdown_item);
+        getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        getSupportActionBar().setListNavigationCallbacks(list, this);
+        getSupportActionBar().setTitle(getString(R.string.child_app_info));
 	}
 	private void initSlideMenuInfo() {
 		h = new Handler();
@@ -304,11 +328,13 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 			}
 			public void onDrawerOpened(View drawerView) {
 				super.onDrawerOpened(drawerView);
+				initChildInfo();
 				Log.d("TJSSM", "oPEN DRAWER!");
 				getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 				getSupportActionBar().setDisplayShowTitleEnabled(false);
 			}
 		};
+		/*
 		list = new ArrayAdapter<CharSequence>(this, R.layout.sherlock_spinner_dropdown_item, mChildList);
 		//navigation list
         Context context = getSupportActionBar().getThemedContext();
@@ -316,6 +342,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
         getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         getSupportActionBar().setListNavigationCallbacks(list, this);
         getSupportActionBar().setTitle(getString(R.string.child_app_info));
+        */
 	}
 	 
     class TH_Loading extends Thread {
@@ -330,6 +357,13 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 			}
 		}
 
+	}
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		Log.d("MainActivity", "MMM");
 	}
 	
 }

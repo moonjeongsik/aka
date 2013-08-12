@@ -18,8 +18,11 @@ public class CustomDialogActivity extends Activity {
         setContentView(R.layout.custom_dialog_activity);
         Intent i = getIntent();
         String msg = i.getExtras().get("MSG").toString();
-        
+        String title = i.getExtras().get("TITLE").toString();
+        TextView tv_title = (TextView)findViewById(R.id.login_connect_dlg);
         TextView tv1 = (TextView)findViewById(R.id.cdialog_text);
         tv1.setText(msg);
-    }
+       	tv_title.setText(title);
+	}
+	
 }

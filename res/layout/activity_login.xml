@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/login"
     android:orientation="vertical" >
 
      <ProgressBar
@@ -16,38 +17,93 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
+        <ImageView 
+            android:layout_width="260dp"
+	        android:layout_height="wrap_content"
+	        android:src="@drawable/login_title"
+	        android:layout_gravity="center_horizontal"
+            />
+         <TextView
+            android:layout_width="match_parent"
+	        android:layout_height="30dp"
+            />
+        <LinearLayout 
+	        style="@style/LoginFormContainer"
+    	    android:layout_width="340dp"
+        	android:layout_height="150dp"
+        	android:layout_gravity="center_horizontal"
+        	android:orientation="vertical" >
+            <LinearLayout 
+	    	    android:layout_width="match_parent"
+    	    	android:layout_height="0dp"
+    	    	android:layout_weight="1"
+    	    	android:paddingLeft="10dp"
+    	    	android:background="@drawable/login_emailboxup">
+    	    	<EditText
+	                android:id="@+id/email"
+	                android:layout_width="wrap_content"
+	                android:layout_height="match_parent"
+   	                android:layout_gravity="center_vertical"
+	                android:ems="10"
+	                android:textSize="20sp"
+	                android:hint="@string/prompt_email"
+	                android:inputType="textEmailAddress"
+	                android:maxLines="4"
+	                android:singleLine="true"
+	                android:text="sp_sosa@naver.com"
+                	android:textColor="#000000"/>
+            </LinearLayout> 
+    	    <LinearLayout
+	    	    android:layout_width="match_parent"
+    	    	android:layout_height="0dp"
+    	    	android:layout_weight="1"
+    	    	android:paddingLeft="10dp"
+    	    	android:background="@drawable/login_emailboxdn">
+    	    	<EditText
+	                android:id="@+id/password"
+	                android:layout_width="wrap_content"
+	                android:layout_height="match_parent"
+	                android:layout_gravity="center_vertical"
+	                android:ems="10"
+	                android:textSize="20sp"
+	                android:hint="@string/prompt_password"
+	                android:imeActionId="@+id/login"
+	                android:imeActionLabel="@string/action_sign_in_short"
+	                android:imeOptions="actionUnspecified"
+	                android:inputType="textPassword"
+	                android:maxLines="1"
+	                android:singleLine="true"
+	                android:text="1234"
+	                android:textColor="#000000"/>
+    	    </LinearLayout>
+        </LinearLayout>
+        <LinearLayout 
+    	    android:layout_width="310dp"
+        	android:layout_height="75dp"
+        	android:layout_gravity="center_horizontal"
+        	android:orientation="vertical" >
+	        <Button 
+	            android:id="@+id/sign_in_button"
+	            android:layout_width="fill_parent"
+	            android:layout_height="fill_parent"
+	            android:background="@drawable/login_ok"
+	            android:text="@string/action_sign_in_register"/>
+		</LinearLayout>
+
         
-        <EditText
+        <TextView 
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/email"
-            android:singleLine="true"
-            android:maxLines="1"
-            android:text="sp_sosa@naver.com"
-            android:inputType="textEmailAddress"
-            android:hint="@string/prompt_email" />
-
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:maxLines="1"
-            android:text="1234"
-            android:hint="@string/prompt_password"
-            android:inputType="textPassword"
-            android:imeActionLabel="@string/action_sign_in_short"
-            android:imeActionId="@+id/login"
-            android:imeOptions="actionUnspecified" />
-
-        <Button 
-            android:id="@+id/sign_in_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/action_sign_in_register"
-            android:paddingLeft="32dp"
-            android:paddingRight="32dp"
-            android:layout_gravity="right" />
+        	android:layout_height="180dp"/>
+        <LinearLayout 
+    	    android:layout_width="250dp"
+        	android:layout_height="35dp"
+        	android:layout_gravity="center_horizontal"
+        	android:orientation="vertical" >
+	        <Button 
+	            android:id="@+id/sign_up_button"
+	            android:layout_width="fill_parent"
+	            android:layout_height="fill_parent"
+	            android:background="@drawable/login_signup"/>
+		</LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -36,7 +36,6 @@ public class MenuListAdapter extends BaseAdapter {
     public static boolean b_btn_square3=false;
     public static boolean b_btn_square4=false;
     
-    
 	public MenuListAdapter(Context context, String[] title, String[] subtitle,
 			int[] icon) {
 		this.context = context;
@@ -68,7 +67,6 @@ public class MenuListAdapter extends BaseAdapter {
 		View itemView = null;
 		// Declare Variables
 		if(position == 0) {
-
 			inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			itemView = inflater.inflate(R.layout.drawer_sub_title, parent,

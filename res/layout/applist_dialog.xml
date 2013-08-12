@@ -27,12 +27,11 @@
 	        android:id="@+id/rgroup_applist"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:checkedButton="@+id/r_app_pass"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
 	        android:orientation="horizontal" >
 			<RadioButton
-	            android:id="@id/r_app_pass"
+	            android:id="@+id/r_app_pass"
 	            android:layout_width="0dp"
 	            android:layout_height="wrap_content"
 	            android:layout_weight="1"
@@ -63,19 +62,32 @@
 	    android:id="@+id/timelimit_option"
 	 	android:layout_width="fill_parent"
 	 	android:layout_height="wrap_content"
+	 	android:gravity="center_horizontal"
+	 	android:background="@android:color/white"
 	 	android:orientation="horizontal">
 	 </LinearLayout>
     
+    <LinearLayout 
+	    android:id="@+id/total_timelimit"
+	 	android:layout_width="fill_parent"
+	 	android:layout_height="wrap_content"
+	 	android:gravity="center_horizontal"
+	 	android:background="@android:color/white"
+	 	android:orientation="horizontal">
+	    <TextView 
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/white"/>
+	 </LinearLayout>
        
 	<LinearLayout 
 	    android:id="@+id/date_select_table"
 	 	android:layout_width="fill_parent"
 	 	android:layout_height="wrap_content"
-	 	android:orientation="vertical">
+	 	android:background="@android:color/white"
+	 	android:orientation="horizontal">
 	 </LinearLayout>
-	  
-
-    
+	     
     <LinearLayout 
         android:layout_width="fill_parent" 
         android:layout_height="50dp" 
@@ -89,7 +101,7 @@
             android:background="#3E80B4" 
             android:clickable="true" 
             android:textSize="20sp" 
-            android:text="등록" 
+            android:text="적용" 
             android:layout_weight="7" 
             android:textColor="@android:color/white" 
             android:textStyle="bold" /> 

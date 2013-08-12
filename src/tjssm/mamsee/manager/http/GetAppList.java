@@ -133,12 +133,9 @@ public class GetAppList extends Activity {
 				String used_time = query_result.getString("used_time");
 				String icon_image = query_result.getString("icon_image");
 				byte[] byteArray = icon_image.getBytes();
-				
-				
 				//Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
 				mChildAppList.add(new ChildApp(app_name, package_name, SecToStr( Integer.parseInt(used_time) ), Integer.parseInt(used_time),  byteArray));
 				Log.d("TJSSM", "child_name:"+app_name+",  used_time:"+used_time);
-				
 			//	Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
 			}
 		}catch(Exception e) {
