@@ -65,8 +65,6 @@ import android.widget.Toast;
 @SuppressLint("NewApi")
 public class GetAppList extends Activity {
 
-	public static final String SERVER_IP = "210.118.64.173"; 
-	
 	private String c_id;
 	private String c_page;
 	private String c_date;

@@ -11,9 +11,10 @@
         android:layout_height="35dp"
         android:layout_gravity="left"
         android:text="Error"
+        android:paddingLeft="10dp"
         android:textColor="@android:color/white"
         android:textSize="25dp"
-        android:textStyle="bold" >
+        android:textStyle="bold">
     </TextView>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -27,6 +28,7 @@
 	        android:layout_height="50dp"
 	        android:layout_gravity="center"
 	        android:gravity="center"
+	        android:paddingLeft="10dp"
 	        android:text="...."
 	        android:background="@android:color/white"
 	        android:textColor="#5DBCD2"
@@ -43,10 +45,10 @@
 	    <Button
 	        android:id="@+id/cdelete_btn_ok"
 	        android:layout_width="0dp"
-	        android:layout_height="50dp"
+	        android:layout_height="40dp"
 			android:layout_weight="7"
 	        android:text="확인"
-	        android:background="#3E80B4"
+	        android:background="@drawable/b_dialog_btn"
 	        android:textColor="@android:color/white"
 	        android:textSize="18dp"
 	        android:textStyle="bold" />
@@ -58,10 +60,10 @@
 	    <Button
 	        android:id="@+id/cdelete_btn_cancel"
 	        android:layout_width="0dp"
-	        android:layout_height="50dp"
+	        android:layout_height="40dp"
 			android:layout_weight="7"
 	        android:text="취소"
-	        android:background="#3E80B4"
+	        android:background="@drawable/b_dialog_btn"
 	        android:textColor="@android:color/white"
 	        android:textSize="18dp"
 	        android:textStyle="bold" />

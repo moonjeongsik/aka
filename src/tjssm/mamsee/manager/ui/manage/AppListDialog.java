@@ -7,6 +7,7 @@ import tjssm.mamsee.manager.http.SetAppOption;
 import tjssm.mamsee.manager.http.SetAppOptionTime;
 import tjssm.mamsee.manager.localdb.AppManageDBAdapter;
 import tjssm.mamsee.manager.ui.MainActivity;
+import android.R.color;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -105,7 +106,7 @@ public class AppListDialog extends Dialog implements
 	  	this.mPackage_name = package_name;
 	  	this.mC_id = c_id;
 	  	
-	  	//±âÁ¸ ¿É¼Ç ºÒ·¯¿À±â
+	  	//ê¸°ì¡´ ì˜µì…˜ ë¶ˆëŸ¬ì˜¤ê¸°
 	  	mDbAdapter = new AppManageDBAdapter(mActivity);
     	mDbAdapter.open();
     	int[] arrOption = mDbAdapter.searchAppOption(mPackage_name);
@@ -136,7 +137,7 @@ public class AppListDialog extends Dialog implements
 	    requestWindowFeature(Window.FEATURE_NO_TITLE);
 	    setContentView(R.layout.applist_dialog);
 	    
-	    //Dialog ±âº» UI °ü·Ã 
+	    //Dialog ê¸°ë³¸ UI ê´€ë ¨ 
 	    TextView title =  (TextView)findViewById(R.id.title_applist);
 	    RadioGroup ColGroup = (RadioGroup)findViewById(R.id.rgroup_applist);
 	    
@@ -155,7 +156,7 @@ public class AppListDialog extends Dialog implements
 	    mSetAppOption = new SetAppOption();
 	    mSetAppOptionTime = new SetAppOptionTime();
 	    
-	    //¿É¼Ç¿¡ µû¸¥ µ¿Àû ¸Ş´º »ı¼º
+	    //ì˜µì…˜ì— ë”°ë¥¸ ë™ì  ë©”ë‰´ ìƒì„±
 	    MakeLimitOptionCheckBox();
 	    MakeTimeLimitBar();
 	    MakeTimeTermBar();
@@ -199,10 +200,10 @@ public class AppListDialog extends Dialog implements
 	    tLimitOption.setOrientation(LinearLayout.HORIZONTAL);
 	    ck_timeterm = new CheckBox(mActivity);
 	    ck_timelimit = new CheckBox(mActivity);
-	    ck_timeterm.setText("±¸°£¼³Á¤");
-	    ck_timelimit.setText("½Ã°£¼³Á¤");
-	    ck_timeterm.setTextColor(Color.parseColor("#5DBCD2"));
-	    ck_timelimit.setTextColor(Color.parseColor("#5DBCD2"));
+	    ck_timeterm.setText("êµ¬ê°„ì„¤ì •");
+	    ck_timelimit.setText("ì‹œê°„ì„¤ì •");
+	    ck_timeterm.setTextColor(Color.parseColor("#A9A9A9"));
+	    ck_timelimit.setTextColor(Color.parseColor("#A9A9A9"));//Color.parseColor("#5DBCD2"));
 	    ck_timeterm.setId(0);
 	    ck_timelimit.setId(1);
 	    ck_timeterm.setWidth(0);
@@ -219,15 +220,15 @@ public class AppListDialog extends Dialog implements
 	    tTotalLimit = (LinearLayout) this.findViewById(R.id.total_timelimit);
 	    tTotalLimit.setOrientation(LinearLayout.VERTICAL);
 	    tTimeTermTitle = new TextView(mActivity);
-	    tTimeTermTitle.setText("ÇÏ·ç »ç¿ë ½Ã°£ ¼³Á¤");
+	    tTimeTermTitle.setText("í•˜ë£¨ ì‚¬ìš© ì‹œê°„ ì„¤ì •");
 	    tTimeTermTitle.setTextSize(15);
-	    
+	    tTimeTermTitle.setTextColor(Color.parseColor("#5DBCD2"));
 	    
 	    bTotal_time = new Button(mActivity);
     	if(curTotalTime != 0)
     		bTotal_time.setText(ConvertTimeFormat(curTotalTime));
     	else 
-    		bTotal_time.setText("»ç¿ë ½Ã°£ ¼³Á¤");
+    		bTotal_time.setText("ì‚¬ìš© ì‹œê°„ ì„¤ì •");
 	    bTotal_time.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
 	    		LayoutParams.WRAP_CONTENT));
 	    bTotal_time.setOnClickListener(new View.OnClickListener() {
@@ -245,10 +246,12 @@ public class AppListDialog extends Dialog implements
 	    dateLayout = (LinearLayout) this.findViewById(R.id.date_select_table); 
 	    dateLayout.setOrientation(LinearLayout.VERTICAL);
 	    tTimeLimitTitle = new TextView(mActivity);
-	    tTimeLimitTitle.setText("»ç¿ë ±¸°£ ¼³Á¤");
+	    tTimeLimitTitle.setText("ì‚¬ìš© êµ¬ê°„ ì„¤ì •");
+	    tTimeLimitTitle.setPadding(10, 0, 0, 0);
+	    tTimeLimitTitle.setTextColor(Color.parseColor("#5DBCD2"));
 	    tTimeLimitTitle.setTextSize(15);
 	    bStart_time = new Button(mActivity);
-	    bStart_time.setText("½ÃÀÛ ½Ã°£");
+	    bStart_time.setText("ì‹œì‘ ì‹œê°„");
 	    bStart_time.setLayoutParams(new LinearLayout.LayoutParams(0,
 	    	    LayoutParams.WRAP_CONTENT, 1));
 	    bStart_time.setOnClickListener(new View.OnClickListener() {
@@ -260,7 +263,7 @@ public class AppListDialog extends Dialog implements
 			}
 		});
 	    bFinish_time = new Button(mActivity);
-	    bFinish_time.setText("Á¾·á ½Ã°£");
+	    bFinish_time.setText("ì¢…ë£Œ ì‹œê°„");
 	    bFinish_time.setLayoutParams(new LinearLayout.LayoutParams(0,
 	    	    LayoutParams.WRAP_CONTENT, 1));
 	    bFinish_time.setOnClickListener(new View.OnClickListener() {
@@ -272,7 +275,7 @@ public class AppListDialog extends Dialog implements
 			}
 	    });
 	    bInsert_time = new Button(mActivity);
-	    bInsert_time.setText("Ãß°¡");
+	    bInsert_time.setText("ì¶”ê°€");
 	    bInsert_time.setLayoutParams(new LinearLayout.LayoutParams(0,
 	    	    LayoutParams.WRAP_CONTENT, 1));
 	    bInsert_time.setOnClickListener(new View.OnClickListener() {
@@ -281,21 +284,21 @@ public class AppListDialog extends Dialog implements
 				boolean checkErr = false;
 				if(curStartTime == curFinishTime) {
 					checkErr = true;
-					ToastAll(mActivity, "Àß¸øµÈ ½Ã°£ÀÔ´Ï´Ù.");
+					ToastAll(mActivity, "ì˜ëª»ëœ ì‹œê°„ì…ë‹ˆë‹¤.");
 				}
 				if(mDbAdapter.searchTime(mPackage_name, curStartTime, curFinishTime) == true) {
 					checkErr = true;
-					ToastAll(mActivity, "ÀÌ¹Ì µî·ÏÇÏ½Å ½Ã°£ÀÔ´Ï´Ù.");
+					ToastAll(mActivity, "ì´ë¯¸ ë“±ë¡í•˜ì‹  ì‹œê°„ì…ë‹ˆë‹¤.");
 				}
 				/*if(curStartTime > curFinishTime) {
 					checkErr = true;
-					ToastAll(mActivity, "Àß¸øµÈ ½Ã°£ÀÔ´Ï´Ù");
+					ToastAll(mActivity, "ì˜ëª»ëœ ì‹œê°„ì…ë‹ˆë‹¤");
 				}*/
 				
 				if(checkErr == false) {
 					
 					if(curStartTime < 0 && curFinishTime < 0) {
-						ToastAll(mActivity, "½Ã°£À» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+						ToastAll(mActivity, "ì‹œê°„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 						return;
 					}
 					
@@ -306,7 +309,7 @@ public class AppListDialog extends Dialog implements
 				  	String fh = String.format("%02d", curFinishTime/60);
 				  	String stime = sh +":"+sm;
 				  	String ftime = fh +":"+fm;
-					ToastAll(mActivity, stime+"~"+ftime+"ÀÌ µî·ÏµÇ¾ú½À´Ï´Ù.");
+					ToastAll(mActivity, stime+"~"+ftime+"ì´ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.");
 					updateTimeList();
 				}
 				/*if(mDbAdapter.searchTimeTableIsExist(mPackage_name) == false) {
@@ -362,13 +365,13 @@ public class AppListDialog extends Dialog implements
 	            public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo) 
 	            {
 	            	AdapterContextMenuInfo mi =(AdapterContextMenuInfo) menuInfo;
-	            	menu.add(0, 0, 0, "»èÁ¦");                
+	            	menu.add(0, 0, 0, "ì‚­ì œ");                
 	            }
 	       }
 	    );
 	   */ 
 	    timeListView.setOnItemClickListener(listViewClickListener);
-        // ¸®½ºÆ®ºäÀÇ ÇÏ´ÜÀÌ º¸¿©Áöµµ·Ï ¼³Á¤ÇÑ´Ù.
+        // ë¦¬ìŠ¤íŠ¸ë·°ì˜ í•˜ë‹¨ì´ ë³´ì—¬ì§€ë„ë¡ ì„¤ì •í•œë‹¤.
 	    //timeListView.setSelection(timeListView.getCount() - 1);
 	    
 	    timeTermlayout = new LinearLayout(mActivity);
@@ -390,7 +393,7 @@ public class AppListDialog extends Dialog implements
 
 			//timeListView.startActionMode(modeCallBack);
    	        //view.setSelected(true);
-			String[] menu_str = new String[]{"»èÁ¦"};
+			String[] menu_str = new String[]{"ì‚­ì œ"};
 			
 			new AlertDialog.Builder(mActivity).setTitle("")
 			.setItems(menu_str, new DialogInterface.OnClickListener(){
@@ -399,7 +402,7 @@ public class AppListDialog extends Dialog implements
 					String[] temp= ((String) timeListView.getItemAtPosition(position)).split("~");
 					Log.d("AppListDialog", ""+applist.get(position*2) + ", "+applist.get(position*2+1));
 					mDbAdapter.deleteTimetable(mPackage_name, applist.get(position*2), applist.get(position*2+1));
-					ToastAll(mActivity, timeListView.getItemAtPosition(position)+"ÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù");
+					ToastAll(mActivity, timeListView.getItemAtPosition(position)+"ì´ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤");
 					updateTimeList();
 				}
 			}).setNegativeButton("",null).show();
@@ -458,7 +461,7 @@ public class AppListDialog extends Dialog implements
 		  mOption = OPTION_TIME;
 		  tLimitOption.addView(ck_timelimit);
 		  tLimitOption.addView(ck_timeterm);
-		  //checkÈ®ÀÎ, 
+		  //checkí™•ì¸, 
 		  if(ck_timeterm.isChecked()) {
 			  	ftimeterm_checked = TIMETERMSETTING_ON;
 				dateLayout.addView(tTimeLimitTitle);
@@ -570,7 +573,7 @@ public class AppListDialog extends Dialog implements
 		  mTotal_HourOfDay = hourOfDay; 
 		  mTotal_Minute = minute;
 		  //String fTime = ConvertTimeFomat(mTotal_HourOfDay, mTotal_Minute); 
-		  //String tTime = hourOfDay+"½Ã  "+minute+"ºĞ";
+		  //String tTime = hourOfDay+"ì‹œ  "+minute+"ë¶„";
 		  bTotal_time.setText(time);
 		  curTotalTime = hourOfDay*60 + minute;
 	  }
@@ -618,7 +621,7 @@ public class AppListDialog extends Dialog implements
   
  
 
-//Åä½ºÆ® Áßº¹¹æÁö¸¦ À§ÇØ ¼³Á¤ Åä½ºÆ®°¡ ¾Èº¸ÀÏ¶§ false º¸ÀÏ¶§ true ±âº»¼³Á¤Àº ´ç¿¬È÷ false
+//í† ìŠ¤íŠ¸ ì¤‘ë³µë°©ì§€ë¥¼ ìœ„í•´ ì„¤ì • í† ìŠ¤íŠ¸ê°€ ì•ˆë³´ì¼ë•Œ false ë³´ì¼ë•Œ true ê¸°ë³¸ì„¤ì •ì€ ë‹¹ì—°íˆ false
 	boolean flag = false;
 	public void ToastAll(Context context, String case_toast) {
 
@@ -643,10 +646,10 @@ public class AppListDialog extends Dialog implements
 					 public void run() {
 						 flag = false;
 					 }
-				 }, 2000);//Åä½ºÆ® ÄÑÁ®ÀÖ´Â ½Ã°£µ¿¾È ÇÚµé·¯ Áö¿¬ ´ëÃæ ¼ôÀÌ 2ÃÊ Á¶±İ ³Ñ´Â°Å °°´Ù.
+				 }, 2000);//í† ìŠ¤íŠ¸ ì¼œì ¸ìˆëŠ” ì‹œê°„ë™ì•ˆ í•¸ë“¤ëŸ¬ ì§€ì—° ëŒ€ì¶© ìˆì´ 2ì´ˆ ì¡°ê¸ˆ ë„˜ëŠ”ê±° ê°™ë‹¤.
 			 } 
 			 else{
-				 Log.e("","Åä½ºÆ® ÄÑÁ®ÀÖÀ½");
+				 Log.e("","í† ìŠ¤íŠ¸ ì¼œì ¸ìˆìŒ");
 			 }
 		 }
 	
@@ -656,7 +659,7 @@ public class AppListDialog extends Dialog implements
 	public void onCreateContextMenu(ContextMenu menu, View v,
 	    ContextMenuInfo menuInfo) {
 	    //AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
-	    //menu.add(Menu.NONE, 0, 0, "»èÁ¦1");
+	    //menu.add(Menu.NONE, 0, 0, "ì‚­ì œ1");
 	    MenuInflater inflater = mActivity.getMenuInflater();
 	    inflater.inflate(R.menu.list_menu, menu);
 	    
@@ -723,29 +726,29 @@ public class AppListDialog extends Dialog implements
 
 /*
 private static String ConvertTimeFomat(int hour, int minute) {
-//	  00:00 ~ 12:00 ¿ÀÀü 12:00 =< ~ <24:00 ¿ÀÈÄ
+//	  00:00 ~ 12:00 ì˜¤ì „ 12:00 =< ~ <24:00 ì˜¤í›„
 	  String h;
  	  String m = String.format("%02d", minute);
 	  
 	  if(hour >= 0 && hour < 12) {
 		  h = String.format("%02d", hour);
-		  return h+"½Ã  "+m+"ºĞ" + "   ¿ÀÀü";
+		  return h+"ì‹œ  "+m+"ë¶„" + "   ì˜¤ì „";
 	  }
 	  else if(hour >= 12 && hour < 24){
 		  if(hour == 12) {
 			  h = String.format("%02d", hour);
-			  return h+"½Ã  "+m+"ºĞ" + "   ¿ÀÈÄ";
+			  return h+"ì‹œ  "+m+"ë¶„" + "   ì˜¤í›„";
 		  }
 	      else {
 			  hour -= 12;
 			  h = String.format("%02d", hour);
-			  return h+"½Ã  "+m+"ºĞ" + "   ¿ÀÈÄ";
+			  return h+"ì‹œ  "+m+"ë¶„" + "   ì˜¤í›„";
 		  }
 	  }
 	  else if(hour == 24) {
 		  hour -= 12;
 		  h = String.format("%02d", hour);
-		  return h+"½Ã  "+m+"ºĞ" + "   ¿ÀÀü";
+		  return h+"ì‹œ  "+m+"ë¶„" + "   ì˜¤ì „";
 	  }
 	return null;
 }*/

@@ -23,9 +23,9 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:textSize="23sp"
-            android:text="num 1"
+            android:textColor="@android:color/darker_gray"
             android:ellipsize="end"
             android:singleLine="true" />
-    </LinearLayout>
+        </LinearLayout>
 
 </LinearLayout>

@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:textSize="23sp"
-            android:text="num 1"
+            android:textColor="@android:color/darker_gray"
             android:ellipsize="end"
             android:singleLine="true" />
         <Button

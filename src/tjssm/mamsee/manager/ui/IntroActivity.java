@@ -26,7 +26,7 @@ public class IntroActivity extends Activity {
         setContentView(R.layout.activity_intro);
         h = new Handler();
         //h.postDelayed(irun, 10000);
-        h.postDelayed(irun, 500);//3√ 
+        h.postDelayed(irun, 500);//
     }
 
     Runnable irun = new Runnable() {

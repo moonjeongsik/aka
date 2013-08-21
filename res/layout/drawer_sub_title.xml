@@ -15,7 +15,8 @@
             android:id="@+id/content_tv1"
             android:layout_width="0dp"
             android:layout_height="28dp"
-            android:text="account"
+            android:textColor="@android:color/holo_blue_dark"
+            android:background="@drawable/title_underline"
             android:ellipsize="end"
             android:textSize="18sp"
             android:focusable="true"
@@ -24,7 +25,5 @@
             android:layout_weight="4"
             android:singleLine="true"/>
      </LinearLayout>
-   
-    
 
 </LinearLayout>

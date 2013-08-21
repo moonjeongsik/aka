@@ -7,6 +7,7 @@ import tjssm.mamsee.manager.R;
 import tjssm.mamsee.manager.R.id;
 import tjssm.mamsee.manager.R.layout;
 import tjssm.mamsee.manager.http.ChildApp;
+import android.R.color;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -34,19 +35,9 @@ public class AppArrayAdapter extends BaseAdapter {
 	ArrayList<ChildApp> mchildApp;
 	LayoutInflater inflater;
     
-/*	public AppArrayAdapter(Context context, String[] fTxt, String[] tTxt,
-			int[] icon) {
-		this.context = context;
-		this.mFisrtText = fTxt;
-		this.mTimeText = tTxt;
-		this.mIcon = icon;
-	}*/
 	public AppArrayAdapter(Context context, ArrayList<ChildApp> childApp) {
 		this.context = context;
 		this.mchildApp = childApp;
-		//	this.mFisrtText = fTxt;
-	//	this.mTimeText = tTxt;
-	//	this.mIcon = icon;
 	}
 
 	@Override
@@ -71,19 +62,19 @@ public class AppArrayAdapter extends BaseAdapter {
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			View itemView = inflater.inflate(R.layout.child_app_list_item, parent,
 					false);
-			
 			String m_name = mchildApp.get(position).m_app_name;
 			String m_utime = mchildApp.get(position).m_used_time;			
 			byte[] real_img = mchildApp.get(position).m_img;
 			byte[] decoded_img = Base64.decode(real_img, Base64.DEFAULT);
 			
-			Bitmap bmp = BitmapFactory.decodeByteArray(decoded_img, 0, decoded_img.length);
+			Bitmap tempbmp = BitmapFactory.decodeByteArray(decoded_img, 0, decoded_img.length);
+  		    Bitmap bmp = tempbmp.copy(Bitmap.Config.ARGB_8888, true);
 			TextView txtName = (TextView) itemView.findViewById(R.id.app_list_name);
 			TextView txtOption = (TextView) itemView.findViewById(R.id.app_list_option);
-			
+			//txtName.setTextColor(color.darker_gray);
+			//txtOption.setTextColor(color.darker_gray);
 			txtName.setText(m_name);
 			txtOption.setText(m_utime);
-			//imgIcon.setImageResource(mIcon[position]);
 			try{
 				if(decoded_img != null){
 					ImageView imgIcon = (ImageView) itemView.findViewById(R.id.app_list_icon);

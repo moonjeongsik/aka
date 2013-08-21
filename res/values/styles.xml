@@ -26,4 +26,20 @@
 	<style name="Theme.CustomDialog" parent="android:style/Theme.Dialog">
 	</style>
 	
+<style name="mamsee" parent="Theme.Sherlock.Light">
+<item name="android:actionBarStyle">@style/mamsee.ActionBarStyle</item>
+<item name="actionBarStyle">@style/mamsee.ActionBarStyle</item>
+</style>
+
+<style name="mamsee.ActionBarStyle" parent="Widget.Sherlock.Light.ActionBar">
+<item name="android:titleTextStyle">@style/mamsee.ActionBar.TitleTextStyle</item>
+<item name="titleTextStyle">@style/mamsee.ActionBar.TitleTextStyle</item>
+</style>
+
+<style name="mamsee.ActionBar.TitleTextStyle" parent="TextAppearance.Sherlock.Widget.ActionBar.Title">
+<item name="android:textColor">@android:color/darker_gray</item>
+</style>
+	
+	
+	
 </resources>

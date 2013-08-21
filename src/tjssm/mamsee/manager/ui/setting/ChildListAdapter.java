@@ -84,16 +84,16 @@ public class ChildListAdapter extends BaseAdapter {
 			txtName.setText(m_name);
 			Button btnShowInfo = (Button) itemView.findViewById(R.id.clist_btn_showinfo);
 			Button btnDelete = (Button) itemView.findViewById(R.id.clist_btn_delete);
-			btnShowInfo.setText("Á¤º¸");
-			btnDelete.setText("ÇØÁ¦");
+			btnShowInfo.setText("ì •ë³´");
+			btnDelete.setText("í•´ì œ");
 			btnShowInfo.setOnClickListener(new View.OnClickListener() {
             @Override
 	            public void onClick(View view) {
 	            	Intent i = new Intent(context, InfoDialog.class);
 	            	i.putExtra("TITLE", "Message");
-	            	i.putExtra("MSG", "ÀÌ¸§ : "+m_name+
-	            				"\r\n"+"ÃÖ±Ù»ç¿ë½Ã°£ : "+last_acc_date+
-	            				"\r\n"+"·çÆÃ»óÅÂ : "+isrouted);
+	            	i.putExtra("MSG", "ì´ë¦„ : "+m_name+
+	            				"\r\n"+"ìµœê·¼ì‚¬ìš©ì‹œê°„ : "+last_acc_date+
+	            				"\r\n"+"ë£¨íŒ…ìƒíƒœ : "+isrouted);
 	            	context.startActivity(i);
 	            }
 			});

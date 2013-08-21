@@ -5,6 +5,7 @@ import tjssm.mamsee.manager.R;
 import tjssm.mamsee.manager.R.id;
 import tjssm.mamsee.manager.R.layout;
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -71,6 +72,7 @@ public class MenuListAdapter extends BaseAdapter {
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			itemView = inflater.inflate(R.layout.drawer_sub_title, parent,
 					false);
+			//itemView.setBackgroundColor(Color.rgb(30, 144, 255));
 			txtTitle = (TextView) itemView.findViewById(R.id.content_tv1);
 			txtTitle.setText(mTitle[position]);
 		}
@@ -89,6 +91,7 @@ public class MenuListAdapter extends BaseAdapter {
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			itemView = inflater.inflate(R.layout.drawer_sub_title, parent,
 					false);
+			//itemView.setBackgroundColor(Color.rgb(30, 144, 255));
 			txtTitle = (TextView) itemView.findViewById(R.id.content_tv1);
 			txtTitle.setText(mTitle[position]);
 
@@ -98,13 +101,13 @@ public class MenuListAdapter extends BaseAdapter {
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			itemView = inflater.inflate(R.layout.drawer_list_item_square, parent,
 					false);
-			
 			Button sq_btn1 = (Button) itemView.findViewById(R.id.slide_b1);
 			Button sq_btn2 = (Button) itemView.findViewById(R.id.slide_b2);
 			Button sq_btn3 = (Button) itemView.findViewById(R.id.slide_b3);
 			Button sq_btn4 = (Button) itemView.findViewById(R.id.slide_b4);
 			
 			sq_btn1.setText("App");
+			//sq_btn1.setBackgroundColor(Color.rgb(248, 248, 255));
 			sq_btn2.setText("Web");
 			sq_btn3.setText("Chat");
 			sq_btn4.setText("dic");
@@ -118,6 +121,7 @@ public class MenuListAdapter extends BaseAdapter {
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			itemView = inflater.inflate(R.layout.drawer_sub_title, parent,
 					false);
+			//itemView.setBackgroundColor(Color.rgb(30, 144, 255));
 			txtTitle = (TextView) itemView.findViewById(R.id.content_tv1);
 			txtTitle.setText(mTitle[position]);
 		}

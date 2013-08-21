@@ -33,14 +33,11 @@ public class ManageApp extends SherlockFragment {
 	private AppArrayAdapter mArrayAdapter;
 	private AppList appList;
 	
-	
 	@Override
 	 public void onActivityCreated(Bundle savedInstanceState) {
 	  super.onActivityCreated(savedInstanceState);
 	  	displayListView();
 	 }
-	
-	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -66,7 +63,6 @@ public class ManageApp extends SherlockFragment {
 				   String app_name 		= MainActivity.arrChildApp.get(position).m_app_name;
 				   String package_name	= MainActivity.arrChildApp.get(position).m_package_name;
 				   String c_id			= MainActivity.cur_child_id;
-				   
 				   
 				   AppListDialog aldialog = new AppListDialog(getSherlockActivity(), app_name, package_name, c_id);
 				   aldialog.show(); 

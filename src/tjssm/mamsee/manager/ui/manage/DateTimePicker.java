@@ -39,7 +39,7 @@ public class DateTimePicker extends Dialog implements
 	  	this.mActivity = a;
 	  	this.mOption = mOption;
   }
-
+  
   @Override
   protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);

@@ -44,19 +44,19 @@ public class MemberRegister extends Activity {
         		boolean cancel=false;
         		 // Check for a valid password.
                 if (TextUtils.isEmpty(m_pw)) {
-                	err_msg = "ÆĞ½º¿öµå¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä";
+                	err_msg = "íŒ¨ìŠ¤ì›Œë“œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”";
                 	cancel = true;
                 } else if (m_pw.length() < 4) {
-                	err_msg = "ÆĞ½º¿öµå°¡ Âª½À´Ï´Ù";
+                	err_msg = "íŒ¨ìŠ¤ì›Œë“œê°€ ì§§ìŠµë‹ˆë‹¤";
                 	cancel = true;
                 }
 
                 // Check for a valid email address.
                 if (TextUtils.isEmpty(m_pw)) {
-                	err_msg = "EmailÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä";
+                	err_msg = "Emailì„ ì…ë ¥í•´ì£¼ì„¸ìš”";
                 	cancel = true;
                 } else if (!m_email.contains("@")) {
-                	err_msg = "¿Ã¹Ù¸¥ EmailÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä";
+                	err_msg = "ì˜¬ë°”ë¥¸ Emailì„ ì…ë ¥í•´ì£¼ì„¸ìš”";
                 	cancel = true;
                 }
 
@@ -70,14 +70,14 @@ public class MemberRegister extends Activity {
                 	Log.d("MemberRegister", "->"+result);
                 	if(result.equals("YOU CANT REGISTER")) {
                     	Intent i = new Intent(MemberRegister.this, CustomDialogActivity.class);
-                    	i.putExtra("MSG", "Áßº¹µÈ emailÀÔ´Ï´Ù.");
+                    	i.putExtra("MSG", "ì¤‘ë³µëœ emailì…ë‹ˆë‹¤.");
                     	i.putExtra("TITLE", "Error");
                     	startActivity(i);                		
                 	}
                 	else if(result.equals("NEW ACCOUNT")) {
                 		Intent i = new Intent(MemberRegister.this, CustomDialogActivity.class);
-                    	i.putExtra("MSG", "°èÁ¤ÀÌ »ı¼ºµÇ¾ú½À´Ï´Ù");
-                    	i.putExtra("TITLE", "¾Ë¸²");
+                    	i.putExtra("MSG", "ê³„ì •ì´ ìƒì„±ë˜ì—ˆìŠµë‹ˆë‹¤");
+                    	i.putExtra("TITLE", "ì•Œë¦¼");
                     	startActivity(i);
                     	finish();
                 	}

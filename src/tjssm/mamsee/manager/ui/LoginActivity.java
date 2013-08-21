@@ -93,7 +93,7 @@ public class LoginActivity extends Activity {
             }
         });
     	dialog = new ProgressDialog(LoginActivity.this); 
-    	dialog.setMessage("·Î±×ÀÎ ÁßÀÔ´Ï´Ù..."); 	
+    	dialog.setMessage("ë¡œê·¸ì¸ ì¤‘ì…ë‹ˆë‹¤..."); 	
     	dialog.setCancelable(true);	
     	pro_dial = new Handler(); 
     }
@@ -130,19 +130,19 @@ public class LoginActivity extends Activity {
 
         // Check for a valid password.
         if (TextUtils.isEmpty(mPassword)) {
-        	err_msg = "ÆĞ½º¿öµå¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä";
+        	err_msg = "íŒ¨ìŠ¤ì›Œë“œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”";
         	cancel = true;
         } else if (mPassword.length() < 4) {
-        	err_msg = "ÆĞ½º¿öµå°¡ Âª½À´Ï´Ù";
+        	err_msg = "íŒ¨ìŠ¤ì›Œë“œê°€ ì§§ìŠµë‹ˆë‹¤";
         	cancel = true;
         }
 
         // Check for a valid email address.
         if (TextUtils.isEmpty(mEmail)) {
-        	err_msg = "EmailÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä";
+        	err_msg = "Emailì„ ì…ë ¥í•´ì£¼ì„¸ìš”";
         	cancel = true;
         } else if (!mEmail.contains("@")) {
-        	err_msg = "¿Ã¹Ù¸¥ EmailÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä";
+        	err_msg = "ì˜¬ë°”ë¥¸ Emailì„ ì…ë ¥í•´ì£¼ì„¸ìš”";
         	cancel = true;
         }
 
@@ -170,15 +170,12 @@ public class LoginActivity extends Activity {
             	pro_dial.postDelayed(irun, 10);
             	result = mCheckAcc.CheckParentAccount(mEmail, mPassword);
             	
-            	
-            	//¿©±â ÇÊ¿ä ¾øÀ½
             	MainActivity.arrChildInfo = mchild.Get_Child_List(mEmail);
             	for(int i=0; i<MainActivity.arrChildInfo.size(); i++) {
             		Log.d("TJSSM", "PRINT- c_id:"+MainActivity.arrChildInfo.get(i).m_c_id+", name:"+MainActivity.arrChildInfo.get(i).m_child_name+
             					", date:"+MainActivity.arrChildInfo.get(i).m_last_acc_date+", is_routed:"+MainActivity.arrChildInfo.get(i).m_is_routed);
             	}
-            	
-            	
+            	            	
             	Log.d("TJSSM", "TRY:"+result);
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -212,8 +209,9 @@ public class LoginActivity extends Activity {
                 finish();
                 
             } else {
-            	String err_msg = "ID ¶Ç´Â PW°¡ Àß¸øµÇ¾ú½À´Ï´Ù";
+            	String err_msg = "ID ë˜ëŠ” PWê°€ ì˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤";
             	Intent i = new Intent(LoginActivity.this, CustomDialogActivity.class);
+            	i.putExtra("TITLE", "ì•Œë¦¼");
             	i.putExtra("MSG", err_msg);
             	startActivity(i);
             }

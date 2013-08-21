@@ -31,13 +31,14 @@ public class DeleteDialog extends Activity {
         TextView tv_title = (TextView)findViewById(R.id.cdelete_title);
         TextView tv1 = (TextView)findViewById(R.id.cdelete_contents);
        	tv_title.setText("Message");
-       	tv1.setText("ÀÚ³à µî·ÏÀ» ÇØÁ¦ÇÕ´Ï´Ù");
+       	tv1.setText("ìë…€ ë“±ë¡ì„ í•´ì œí•©ë‹ˆë‹¤");
        	
        	Button btn_ok = (Button)findViewById(R.id.cdelete_btn_ok);
        	btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
             	mDeleteMember.DelMember(p_id, c_id);
+            	
             	Log.d("DeleteDialog", "pid:"+p_id+", c_id:"+c_id);
             	finish();
             }

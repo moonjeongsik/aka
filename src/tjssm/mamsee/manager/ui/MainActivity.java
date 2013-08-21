@@ -1,6 +1,11 @@
 package tjssm.mamsee.manager.ui;
 
 
+// SET_APP_OPTION - Ïï± Ï†úÌïú ÏÑ§Ï†ï push  Î©îÏãúÏßÄ
+// 
+
+
+
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,6 +41,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -52,11 +58,10 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.support.v4.view.GravityCompat;
+import android.text.Html;
 
 @SuppressLint("NewApi")
 public class MainActivity extends SherlockFragmentActivity implements OnNavigationListener {
-
-	
 	
 	// Declare Variable
 	public static String cur_child_id;
@@ -64,7 +69,6 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	private String cur_child_name;
 	private String cur_child_date;
 	private String cur_child_route;
-	
 	
 	public static ArrayList<ChildInfo> arrChildInfo;
 	DrawerLayout mDrawerLayout;
@@ -96,7 +100,6 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	TH_Loading mTh_Loading;
 	public static ArrayList<ChildApp> arrChildApp;
 	
-	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -110,15 +113,13 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 				selectItem(0);
 		}
 		prog_dialog = new ProgressDialog(MainActivity.this);
-		prog_dialog.setMessage("¿·Ω√ ±‚¥Ÿ∑¡¡÷ººø‰...");
+		prog_dialog.setMessage("Ïû†Ïãú Í∏∞Îã§Î†§Ï£ºÏÑ∏Ïöî...");
 		prog_dialog.setCancelable(true);
-		
-        
 		
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getSupportMenuInflater().inflate(R.menu.main, menu);
+		//getSupportMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 	@Override
@@ -160,7 +161,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	        	if(MenuListAdapter.b_btn_square1 == true)
 	        	{
 	        		arrChildApp = mGetAppList.GetChildAppList(cur_child_id);
-	        		//Ω√∞£ º¯º≠¥Î∑Œ ¡§∑ƒ!
+	        		//ÏãúÍ∞Ñ ÏàúÏÑúÎåÄÎ°ú Ï†ïÎ†¨!
 	        		Collections.sort(arrChildApp, new AppTimeCompare());;//arrChildApp.
 	        		Collections.reverse(arrChildApp);
 		    		for(int i = 0; i < arrChildApp.size(); i++) {
@@ -213,7 +214,7 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		    		mDrawerLayout.closeDrawer(mDrawerList);
 		    		MenuListAdapter.b_btn_square4 = false;
 	        	}
-	        	h.postDelayed(irun, 30);//0.3√ 
+	        	h.postDelayed(irun, 30);//0.3Ï¥à
 	        }
 	};
 	
@@ -226,17 +227,19 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		switch (position) {
 		case 1:
 			ft.replace(R.id.content_frame, child_app_info);
+			//getSupportActionBar().setTitle(Html.fromHtml("<font color='#000000'>"+R.string.child_app_info+"</font>"));
    		    getSupportActionBar().setTitle(getString(R.string.child_app_info));
 			break;
 		case 2:
 			ft.replace(R.id.content_frame, child_web_info);
-   		    getSupportActionBar().setTitle(getString(R.string.child_web_info));
+			//getSupportActionBar().setTitle(Html.fromHtml("<font color='#000000'>"+R.string.child_web_info+"</font>"));
+			getSupportActionBar().setTitle(getString(R.string.child_web_info));
 			break;
 		case 3:
 			ft.replace(R.id.content_frame, child_chat_info);
-   		    getSupportActionBar().setTitle(getString(R.string.child_chat_info));
+		    getSupportActionBar().setTitle(getString(R.string.child_chat_info));
 			break;
-		case 7:////∞Ë¡§ ∞¸∏Æ
+		case 7:////Í≥ÑÏ†ï Í¥ÄÎ¶¨
 			ft.replace(R.id.content_frame, setting_account);
    		    getSupportActionBar().setTitle(getString(R.string.account_management));
 			break;
@@ -296,16 +299,15 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 	}
 	private void initSlideMenuInfo() {
 		h = new Handler();
-        h.postDelayed(irun, 30);//0.3√ 
+        h.postDelayed(irun, 30);//0.3Ï¥à
 		
-		// Generate title//1,3¿Ã ≈∏¿Ã∆≤, 0, 3 πˆ∆∞ 
+		// Generate title//1,3Ïù¥ ÌÉÄÏù¥ÌãÄ, 0, 3 Î≤ÑÌäº 
 		title = new String[] { "Information", getString(R.string.child_app_info), getString(R.string.child_web_info), getString(R.string.child_chat_info), "Management", "square_form", "Setting", getString(R.string.account_management), 
 				getString(R.string.child_management), getString(R.string.setting)};
 		subtitle = new String[] { "Information", "1", "2", "3", "Management", "square_form", "Setting", getString(R.string.account_management), 
 				getString(R.string.child_management), getString(R.string.setting)};
-		icon = new int[] { 0, R.drawable.collections_cloud, R.drawable.collections_cloud, R.drawable.collections_cloud, 0, 0, 0, R.drawable.action_about, R.drawable.action_settings,
-				R.drawable.collections_cloud };
-
+		icon = new int[] { 0, R.drawable.app_icon, R.drawable.web_icon, R.drawable.chat_icon, 0, 0, 0, R.drawable.id_icon, R.drawable.child_icon,
+				R.drawable.setting_icon };
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
 		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
@@ -314,7 +316,8 @@ public class MainActivity extends SherlockFragmentActivity implements OnNavigati
 		mDrawerList.setAdapter(mMenuAdapter);
 		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 		
-		
+		//ÌÉÄÏù¥ÌãÄ ÏÉâÏÉÅ
+		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xffffffff));
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
 				R.drawable.ic_drawer, R.string.drawer_open,
